@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flyora — Flights</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="index.html">
+            <span class="logo-icon">✦</span>
+            <span class="logo-text">Flyora</span>
+        </a>
+    </div>
+
+    <nav class="nav-container">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="flights.html" class="active">Flights</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button id="theme-toggle" type="button">Toggle Theme</button>
+            <a href="flights.html" class="btn-explore">Explore →</a>
+        </div>
+    </nav>
+</header>
+
+
+<div class="grid-page-layout">
+
+
+    <aside class="grid-sidebar-area">
+        <span class="section-label">FILTERS</span>
+
+        <div class="sidebar-box">
+            <h3>Stops</h3>
+            <label><input type="checkbox" checked> Direct flights only</label>
+            <label><input type="checkbox" checked> 1 connection</label>
+            <label><input type="checkbox"> 2+ connections</label>
+        </div>
+
+        <div class="sidebar-box">
+            <h3>Airlines</h3>
+            <label><input type="checkbox" checked> Flyora Air</label>
+            <label><input type="checkbox" checked> Air Astana</label>
+            <label><input type="checkbox" checked> FlyArystan</label>
+        </div>
+
+        <div class="sidebar-box">
+            <h3>Class</h3>
+            <label><input type="radio" name="class" checked> Economy</label>
+            <label><input type="radio" name="class"> Business</label>
+        </div>
+    </aside>
+
+
+    <main class="grid-main-area">
+        <span class="section-label">SEARCH RESULTS</span>
+        <h1>Available Flights</h1>
+        <p style="color: var(--muted); margin-bottom: 30px;">Find and reserve your next route with Flyora.</p>
+
+        <div class="flight-list">
+
+            <article class="flight-card-item">
+                <div>
+                    <strong>Flyora Air</strong>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Astana (TSE) → Almaty (ALA)</p>
+                </div>
+                <div>
+                    <strong>08:20 → 11:55</strong>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Direct · 1h 35m</p>
+                </div>
+                <strong style="color: var(--plum); font-size: 1.2rem;">₸32,900</strong>
+                <button class="explore-button" style="padding: 8px 18px;">Select</button>
+            </article>
+
+            <article class="flight-card-item">
+                <div>
+                    <strong>Air Astana</strong>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Almaty (ALA) → Dubai (DXB)</p>
+                </div>
+                <div>
+                    <strong>13:10 → 17:25</strong>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Direct · 4h 15m</p>
+                </div>
+                <strong style="color: var(--plum); font-size: 1.2rem;">₸91,500</strong>
+                <button class="explore-button" style="padding: 8px 18px;">Select</button>
+            </article>
+
+            <article class="flight-card-item">
+                <div>
+                    <strong>FlyArystan</strong>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Astana (TSE) → Shymkent (CIT)</p>
+                </div>
+                <div>
+                    <strong>19:40 → 21:30</strong>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Direct · 1h 50m</p>
+                </div>
+                <strong style="color: var(--plum); font-size: 1.2rem;">₸24,000</strong>
+                <button class="explore-button" style="padding: 8px 18px;">Select</button>
+            </article>
+
+        </div>
+    </main>
+
+
+    <footer class="footer grid-footer-area">
+        <div class="container footer-grid">
+            <div>
+                <a href="index.html" class="logo">
+                    <span class="logo-symbol">✦</span>
+                    Flyora
+                </a>
+                <p>Discover the world beautifully.</p>
+            </div>
+
+            <div>
+                <h3>Team SE-2503</h3>
+                <ul>
+                    <li>Seifullina Adema</li>
+                    <li>Zholshara Khanshaiym</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="flights.html">Flights</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <span>© 2026 Flyora</span>
+            <span>Front-End Development · SE-2503</span>
+        </div>
+    </footer>
+
+</div>
+<form id="booking-form">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="number" id="passengers" placeholder="Number of Passengers" min="1" required>
+    <button type="submit">Book Now</button>
+</form>
+
+<script src="js/script.js"></script>
+</body>
+</html>

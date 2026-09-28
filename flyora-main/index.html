@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flyora — Discover the world beautifully</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <span class="logo-icon">✦</span>
+      <span class="logo-text">Flyora</span>
+    </a>
+  </div>
+
+  <nav class="nav-container">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="flights.html">Flights</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button id="theme-toggle" type="button">Toggle Theme</button>
+      <a href="flights.html" class="btn-explore">Explore →</a>
+    </div>
+  </nav>
+</header>
+<main>
+
+
+  <section class="inner-hero">
+    <div class="container">
+      <span class="section-label">FLYORA TRAVEL</span>
+      <h1>Discover the world beautifully.</h1>
+      <p>Book flights to iconic cities and hidden gems around the globe with total peace of mind.</p>
+    </div>
+  </section>
+
+
+  <section class="search-section">
+    <div class="container">
+      <div class="search-card">
+        <div class="search-title">
+          <span class="title-line"></span>
+          <span class="title-text">FLIGHT SEARCH</span>
+        </div>
+
+        <form id="flightSearch" class="search-form">
+
+          <div class="input-box">
+            <label>From</label>
+            <div class="input-field">
+              <span class="icon">✈</span>
+              <select id="from" required>
+                <option value="" disabled selected>Choose city</option>
+                <option value="Astana">Astana</option>
+                <option value="Almaty">Almaty</option>
+                <option value="Shymkent">Shymkent</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label>To</label>
+            <div class="input-field">
+              <span class="icon">✈</span>
+              <select id="to" required>
+                <option value="" disabled selected>Choose destination</option>
+                <option value="Almaty">Almaty</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Astana">Astana</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label>Departure</label>
+            <div class="input-field">
+              <input id="date" type="date" required>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label>Return</label>
+            <div class="input-field">
+              <input id="returnDate" type="date">
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label>Passengers</label>
+            <div class="input-field">
+              <span class="icon">👤</span>
+              <select id="passengers">
+                <option value="1">1 Adult</option>
+                <option value="2">2 Adults</option>
+                <option value="3">3 Adults</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="search-btn">
+            <span>⌕</span> Search flights
+          </button>
+
+        </form>
+        <div id="searchNotice" class="form-notice"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container">
+      <span class="section-label">TRENDING DESTINATIONS</span>
+      <h2>Top Destinations Today</h2>
+
+      <div class="destination-grid">
+        <article class="destination-card">
+          <div class="destination-image">
+            <img src="images/astana.jpg" alt="Astana">
+          </div>
+          <div class="destination-info">
+            <div>
+              <h3>Astana</h3>
+              <p>Capital of Kazakhstan</p>
+            </div>
+            <strong>From ₸38,000</strong>
+          </div>
+        </article>
+
+        <article class="destination-card">
+          <div class="destination-image">
+            <img src="images/almaty.jpg" alt="Almaty">
+          </div>
+          <div class="destination-info">
+            <div>
+              <h3>Almaty</h3>
+              <p>Mountain views & nature</p>
+            </div>
+            <strong>From ₸32,000</strong>
+          </div>
+        </article>
+
+        <article class="destination-card">
+          <div class="destination-image">
+            <img src="images/dubai.jpg" alt="Dubai">
+          </div>
+          <div class="destination-info">
+            <div>
+              <h3>Dubai</h3>
+              <p>Modern architecture</p>
+            </div>
+            <strong>From ₸92,000</strong>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="index.html" class="logo">
+        <span class="logo-symbol">✦</span>
+        Flyora
+      </a>
+      <p>Discover the world beautifully.</p>
+    </div>
+
+    <div>
+      <h3>Team SE-2503</h3>
+      <ul>
+        <li>Seifullina Adema</li>
+        <li>Zholshara Khanshaiym</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© 2026 Flyora</span>
+    <span>Front-End Development · SE-2503</span>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

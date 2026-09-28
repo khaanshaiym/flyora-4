@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flyora — Contact</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+        <a href="index.html">
+            <span class="logo-icon">✦</span>
+            <span class="logo-text">Flyora</span>
+        </a>
+    </div>
+
+    <nav class="nav-container">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="flights.html">Flights</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button id="theme-toggle" type="button">Toggle Theme</button>
+            <a href="flights.html" class="btn-explore">Explore →</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- PAGE HEADER -->
+    <section class="inner-hero">
+        <div class="container">
+            <span class="section-label">CONTACT FLYORA</span>
+            <h1>Let's plan the details.</h1>
+            <p>Have a question about flights, destinations or our project? Send us a message.</p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section">
+        <div class="container contact-grid">
+
+            <!-- INFORMATION -->
+            <div class="contact-information">
+                <img src="images/astana.jpg" alt="Astana city skyline" class="contact-image">
+
+                <span class="section-label">FLYORA STUDIO</span>
+                <h2>Travel, thoughtfully.</h2>
+                <p>Flyora is a student flight-booking website project created for Front-End Development.</p>
+
+                <ul class="contact-list">
+                    <li>
+                        <strong>Team</strong>
+                        <span>SE-2503</span>
+                    </li>
+                    <li>
+                        <strong>Students</strong>
+                        <span>Seifullina Adema & Zholshara Khanshaiym</span>
+                    </li>
+                    <li>
+                        <strong>Technologies</strong>
+                        <span>HTML · CSS · JavaScript</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FORM -->
+            <div class="form-card">
+                <span class="section-label">CONTACT FORM</span>
+                <h2>Tell us what you need.</h2>
+
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" placeholder="Your name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="topic">Topic</label>
+                            <select id="topic" required>
+                                <option value="">Choose topic</option>
+                                <option>Flight question</option>
+                                <option>Booking support</option>
+                                <option>Destination question</option>
+                                <option>Project feedback</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Preferred interface</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="mode" value="day" required>
+                                    Day
+                                </label>
+                                <label>
+                                    <input type="radio" name="mode" value="night">
+                                    Night
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Write your message..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="color">Choose accent color</label>
+                        <input id="color" type="color" value="#542653" class="color-input">
+                    </div>
+
+                    <button type="submit" class="form-submit">
+                        Send message <span>→</span>
+                    </button>
+
+                    <div id="formNotice" class="form-notice"></div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <a href="index.html" class="logo">
+                <span class="logo-symbol">✦</span>
+                Flyora
+            </a>
+            <p>Discover the world beautifully.</p>
+        </div>
+
+        <div>
+            <h3>Team SE-2503</h3>
+            <ul>
+                <li>Seifullina Adema</li>
+                <li>Zholshara Khanshaiym</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="flights.html">Flights</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container footer-bottom">
+        <span>© 2026 Flyora</span>
+        <span>Front-End Development · SE-2503</span>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+<
+</body>
+</body>
+</html>
