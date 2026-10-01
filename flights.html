@@ -1,158 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flyora — Flights</title>
+    <title>Flyora - Flights</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<body class="d-flex flex-column min-vh-100">
 
-<body>
-<header class="header">
-    <div class="logo">
-        <a href="index.html">
-            <span class="logo-icon">✦</span>
-            <span class="logo-text">Flyora</span>
-        </a>
+<!-- NAVBAR -->
+<header class="border-bottom py-2">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <a class="navbar-brand logo d-flex align-items-center gap-2" href="index.html">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text fw-bold">Flyora</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3 align-items-center gap-3">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <button id="theme-toggle" class="btn btn-outline-secondary btn-sm">Toggle Theme</button>
+                    <a href="destinations.html" class="btn btn-dark rounded-pill px-3 py-2 btn-sm">Explore →</a>
+                </div>
+            </div>
+        </nav>
     </div>
-
-    <nav class="nav-container">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="flights.html" class="active">Flights</a></li>
-            <li><a href="destinations.html">Destinations</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-
-        <div class="nav-actions">
-            <button id="theme-toggle" type="button">Toggle Theme</button>
-            <a href="flights.html" class="btn-explore">Explore →</a>
-        </div>
-    </nav>
 </header>
 
-
-<div class="grid-page-layout">
-
-
-    <aside class="grid-sidebar-area">
-        <span class="section-label">FILTERS</span>
-
-        <div class="sidebar-box">
-            <h3>Stops</h3>
-            <label><input type="checkbox" checked> Direct flights only</label>
-            <label><input type="checkbox" checked> 1 connection</label>
-            <label><input type="checkbox"> 2+ connections</label>
+<!-- MAIN CONTENT -->
+<main class="flex-grow-1 py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-uppercase tracking-widest text-muted small fw-semibold">Search Results</span>
+            <h1 class="display-5 fw-bold mt-2" style="font-family: serif;">Available Flights</h1>
+            <p class="text-muted">Find and reserve your next route with Flyora.</p>
         </div>
 
-        <div class="sidebar-box">
-            <h3>Airlines</h3>
-            <label><input type="checkbox" checked> Flyora Air</label>
-            <label><input type="checkbox" checked> Air Astana</label>
-            <label><input type="checkbox" checked> FlyArystan</label>
-        </div>
+        <div class="row g-4">
+            <!-- Filters Sidebar -->
+            <div class="col-lg-3">
+                <div class="card p-4 shadow-sm border-0 rounded-4">
+                    <h6 class="fw-bold mb-3">FILTERS</h6>
 
-        <div class="sidebar-box">
-            <h3>Class</h3>
-            <label><input type="radio" name="class" checked> Economy</label>
-            <label><input type="radio" name="class"> Business</label>
-        </div>
-    </aside>
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold">Stops</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked id="direct">
+                            <label class="form-check-label small" for="direct">Direct flights only</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked id="stop1">
+                            <label class="form-check-label small" for="stop1">1 connection</label>
+                        </div>
+                    </div>
 
-
-    <main class="grid-main-area">
-        <span class="section-label">SEARCH RESULTS</span>
-        <h1>Available Flights</h1>
-        <p style="color: var(--muted); margin-bottom: 30px;">Find and reserve your next route with Flyora.</p>
-
-        <div class="flight-list">
-
-            <article class="flight-card-item">
-                <div>
-                    <strong>Flyora Air</strong>
-                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Astana (TSE) → Almaty (ALA)</p>
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold">Airlines</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked id="air1">
+                            <label class="form-check-label small" for="air1">Flyora Air</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked id="air2">
+                            <label class="form-check-label small" for="air2">Air Astana</label>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <strong>08:20 → 11:55</strong>
-                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Direct · 1h 35m</p>
-                </div>
-                <strong style="color: var(--plum); font-size: 1.2rem;">₸32,900</strong>
-                <button class="explore-button" style="padding: 8px 18px;">Select</button>
-            </article>
-
-            <article class="flight-card-item">
-                <div>
-                    <strong>Air Astana</strong>
-                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Almaty (ALA) → Dubai (DXB)</p>
-                </div>
-                <div>
-                    <strong>13:10 → 17:25</strong>
-                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Direct · 4h 15m</p>
-                </div>
-                <strong style="color: var(--plum); font-size: 1.2rem;">₸91,500</strong>
-                <button class="explore-button" style="padding: 8px 18px;">Select</button>
-            </article>
-
-            <article class="flight-card-item">
-                <div>
-                    <strong>FlyArystan</strong>
-                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Astana (TSE) → Shymkent (CIT)</p>
-                </div>
-                <div>
-                    <strong>19:40 → 21:30</strong>
-                    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Direct · 1h 50m</p>
-                </div>
-                <strong style="color: var(--plum); font-size: 1.2rem;">₸24,000</strong>
-                <button class="explore-button" style="padding: 8px 18px;">Select</button>
-            </article>
-
-        </div>
-    </main>
-
-
-    <footer class="footer grid-footer-area">
-        <div class="container footer-grid">
-            <div>
-                <a href="index.html" class="logo">
-                    <span class="logo-symbol">✦</span>
-                    Flyora
-                </a>
-                <p>Discover the world beautifully.</p>
             </div>
 
-            <div>
-                <h3>Team SE-2503</h3>
-                <ul>
-                    <li>Seifullina Adema</li>
-                    <li>Zholshara Khanshaiym</li>
-                </ul>
-            </div>
+            <!-- Flight List -->
+            <div class="col-lg-9">
+                <div class="d-flex flex-column gap-3">
+                    <!-- Flight Card 1 -->
+                    <div class="card p-4 shadow-sm border-0 rounded-4 d-flex flex-row align-items-center justify-content-between">
+                        <div>
+                            <h6 class="fw-bold mb-1">Flyora Air</h6>
+                            <p class="text-muted small mb-0">Astana (TSE) → Almaty (ALA)</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="fw-bold d-block">08:20 → 11:55</span>
+                            <small class="text-muted">Direct · 1h 35m</small>
+                        </div>
+                        <div class="text-end">
+                            <div class="h5 fw-bold mb-1">₸32,900</div>
+                            <button class="btn btn-dark btn-sm rounded-pill px-4">Select</button>
+                        </div>
+                    </div>
 
-            <div>
-                <h3>Explore</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="flights.html">Flights</a></li>
-                    <li><a href="destinations.html">Destinations</a></li>
-                </ul>
+                    <!-- Flight Card 2 -->
+                    <div class="card p-4 shadow-sm border-0 rounded-4 d-flex flex-row align-items-center justify-content-between">
+                        <div>
+                            <h6 class="fw-bold mb-1">Air Astana</h6>
+                            <p class="text-muted small mb-0">Almaty (ALA) → Dubai (DXB)</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="fw-bold d-block">13:10 → 17:25</span>
+                            <small class="text-muted">Direct · 4h 15m</small>
+                        </div>
+                        <div class="text-end">
+                            <div class="h5 fw-bold mb-1">₸91,500</div>
+                            <button class="btn btn-dark btn-sm rounded-pill px-4">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Reservation Form -->
+                <div class="card p-4 shadow-sm border-0 rounded-4 mt-4">
+                    <h5 class="fw-bold mb-3">Quick Reservation</h5>
+                    <form class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label small">Full Name</label>
+                            <input type="text" class="form-control border-0 bg-light rounded-3" placeholder="John Doe">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small">Email Address</label>
+                            <input type="email" class="form-control border-0 bg-light rounded-3" placeholder="name@example.com">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small">Passengers</label>
+                            <input type="number" class="form-control border-0 bg-light rounded-3" value="1">
+                        </div>
+                        <div class="col-12 mt-3">
+                            <button type="submit" class="btn btn-dark rounded-pill px-4 py-2">Book Now</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
+</main>
 
-        <div class="container footer-bottom">
-            <span>© 2026 Flyora</span>
-            <span>Front-End Development · SE-2503</span>
-        </div>
-    </footer>
+<!-- FOOTER-->
+<footer class="custom-footer py-4 mt-auto text-white" style="background-color: #1a0f1c;">
+    <div class="container text-center">
+        <p class="mb-1 small opacity-90">
+            <span>Developed by Team:</span>
+            <strong>Seifullina Adema, Zholshara Khanshaiym</strong>
+            <span class="mx-2 opacity-50">|</span>
+            <span>Group:</span>
+            <strong>SE-2503</strong>
+        </p>
+        <p class="mb-0 extra-small text-white-50" style="font-size: 0.8rem;">© 2026 Flyora Travel Inc. All rights reserved.</p>
+    </div>
+</footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-</div>
-<form id="booking-form">
-    <input type="text" id="name" placeholder="Full Name" required>
-    <input type="email" id="email" placeholder="Email Address" required>
-    <input type="number" id="passengers" placeholder="Number of Passengers" min="1" required>
-    <button type="submit">Book Now</button>
-</form>
+<!-- Скрипт переключения и сохранения темы -->
+<script>
+    // При загрузке страницы сразу проверяем сохраненную тему
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-theme");
+    }
 
-<script src="script.js"></script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleBtn = document.getElementById("theme-toggle");
+
+        if (toggleBtn) {
+            toggleBtn.addEventListener("click", function () {
+                document.body.classList.toggle("dark-theme");
+
+                // Сохраняем состояние в память браузера (localStorage)
+                if (document.body.classList.contains("dark-theme")) {
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    localStorage.setItem("theme", "light");
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

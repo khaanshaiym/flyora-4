@@ -1,205 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flyora — Discover the world beautifully</title>
+  <title>Flyora - Home</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-<header class="header">
-  <div class="logo">
-    <a href="index.html">
-      <span class="logo-icon">✦</span>
-      <span class="logo-text">Flyora</span>
-    </a>
-  </div>
 
-  <nav class="nav-container">
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="flights.html">Flights</a></li>
-      <li><a href="destinations.html">Destinations</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-
-    <div class="nav-actions">
-      <button id="theme-toggle" type="button">Toggle Theme</button>
-      <a href="flights.html" class="btn-explore">Explore →</a>
-    </div>
-  </nav>
-</header>
-<main>
-
-
-  <section class="inner-hero">
-    <div class="container">
-      <span class="section-label">FLYORA TRAVEL</span>
-      <h1>Discover the world beautifully.</h1>
-      <p>Book flights to iconic cities and hidden gems around the globe with total peace of mind.</p>
-    </div>
-  </section>
-
-
-  <section class="search-section">
-    <div class="container">
-      <div class="search-card">
-        <div class="search-title">
-          <span class="title-line"></span>
-          <span class="title-text">FLIGHT SEARCH</span>
-        </div>
-
-        <form id="flightSearch" class="search-form">
-
-          <div class="input-box">
-            <label>From</label>
-            <div class="input-field">
-              <span class="icon">✈</span>
-              <select id="from" required>
-                <option value="" disabled selected>Choose city</option>
-                <option value="Astana">Astana</option>
-                <option value="Almaty">Almaty</option>
-                <option value="Shymkent">Shymkent</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="input-box">
-            <label>To</label>
-            <div class="input-field">
-              <span class="icon">✈</span>
-              <select id="to" required>
-                <option value="" disabled selected>Choose destination</option>
-                <option value="Almaty">Almaty</option>
-                <option value="Dubai">Dubai</option>
-                <option value="Astana">Astana</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="input-box">
-            <label>Departure</label>
-            <div class="input-field">
-              <input id="date" type="date" required>
-            </div>
-          </div>
-
-          <div class="input-box">
-            <label>Return</label>
-            <div class="input-field">
-              <input id="returnDate" type="date">
-            </div>
-          </div>
-
-          <div class="input-box">
-            <label>Passengers</label>
-            <div class="input-field">
-              <span class="icon">👤</span>
-              <select id="passengers">
-                <option value="1">1 Adult</option>
-                <option value="2">2 Adults</option>
-                <option value="3">3 Adults</option>
-              </select>
-            </div>
-          </div>
-
-          <button type="submit" class="search-btn">
-            <span>⌕</span> Search flights
-          </button>
-
-        </form>
-        <div id="searchNotice" class="form-notice"></div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section">
-    <div class="container">
-      <span class="section-label">TRENDING DESTINATIONS</span>
-      <h2>Top Destinations Today</h2>
-
-      <div class="destination-grid">
-        <article class="destination-card">
-          <div class="destination-image">
-            <img src="images/astana.jpg" alt="Astana">
-          </div>
-          <div class="destination-info">
-            <div>
-              <h3>Astana</h3>
-              <p>Capital of Kazakhstan</p>
-            </div>
-            <strong>From ₸38,000</strong>
-          </div>
-        </article>
-
-        <article class="destination-card">
-          <div class="destination-image">
-            <img src="almaty.jpg" alt="Almaty">
-          </div>
-          <div class="destination-info">
-            <div>
-              <h3>Almaty</h3>
-              <p>Mountain views & nature</p>
-            </div>
-            <strong>From ₸32,000</strong>
-          </div>
-        </article>
-
-        <article class="destination-card">
-          <div class="destination-image">
-            <img src="images/dubai.jpg" alt="Dubai">
-          </div>
-          <div class="destination-info">
-            <div>
-              <h3>Dubai</h3>
-              <p>Modern architecture</p>
-            </div>
-            <strong>From ₸92,000</strong>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="container footer-grid">
-    <div>
-      <a href="index.html" class="logo">
-        <span class="logo-symbol">✦</span>
-        Flyora
+<!-- ==========================================
+     1. NAVBAR (Task 5 Requirement)
+=========================================== -->
+<header class="border-bottom">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand logo" href="index.html">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Flyora</span>
       </a>
-      <p>Discover the world beautifully.</p>
-    </div>
 
-    <div>
-      <h3>Team SE-2503</h3>
-      <ul>
-        <li>Seifullina Adema</li>
-        <li>Zholshara Khanshaiym</li>
-      </ul>
-    </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div>
-      <h3>Explore</h3>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="flights.html">Flights</a></li>
-        <li><a href="destinations.html">Destinations</a></li>
-      </ul>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav me-3 align-items-center gap-2">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
+          <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <button id="theme-toggle" class="btn">Toggle Theme</button>
+          <a href="destinations.html" class="btn btn-primary btn-explore">Explore →</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ==========================================
+     2. HERO SECTION & FLIGHT SEARCH (Task 9)
+=========================================== -->
+<main class="py-5">
+  <div class="container text-center mb-5">
+    <span class="text-uppercase tracking-widest text-muted small fw-semibold">Flyora Travel</span>
+    <h1 class="display-4 fw-bold mt-2 mb-3">Discover the world beautifully.</h1>
+    <p class="text-muted mx-auto" style="max-width: 600px;">
+      Book flights to iconic cities and hidden gems around the globe with total peace of mind.
+    </p>
+
+    <!-- Search Form Block -->
+    <div class="search-card mt-5 text-start">
+      <span class="text-uppercase small fw-bold text-muted d-block mb-3">— FLIGHT SEARCH</span>
+      <form class="row g-3 align-items-end">
+        <div class="col-12 col-md-6 col-lg">
+          <label class="form-label small text-muted">From</label>
+          <select class="form-select">
+            <option selected>Choose city</option>
+            <option value="1">Astana (NQZ)</option>
+            <option value="2">Almaty (ALA)</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-6 col-lg">
+          <label class="form-label small text-muted">To</label>
+          <select class="form-select">
+            <option selected>Choose destination</option>
+            <option value="1">Dubai (DXB)</option>
+            <option value="2">Istanbul (IST)</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-6 col-lg">
+          <label class="form-label small text-muted">Departure</label>
+          <input type="date" class="form-control">
+        </div>
+        <div class="col-12 col-md-6 col-lg">
+          <label class="form-label small text-muted">Return</label>
+          <input type="date" class="form-control">
+        </div>
+        <div class="col-12 col-md-6 col-lg">
+          <label class="form-label small text-muted">Passengers</label>
+          <select class="form-select">
+            <option selected>1 Adult</option>
+            <option value="2">2 Adults</option>
+          </select>
+        </div>
+        <div class="col-12 col-lg-auto">
+          <button type="submit" class="btn btn-primary w-100 px-4 py-2">✈ Search flights</button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <div class="container footer-bottom">
-    <span>© 2026 Flyora</span>
-    <span>Front-End Development · SE-2503</span>
+  <!-- ==========================================
+       3. CAROUSEL SLIDER (Task 7 - 9 Images)
+  =========================================== -->
+  <div class="container my-5">
+    <h2 class="h3 fw-bold mb-4 text-center">Featured Destinations Gallery</h2>
+    <div id="destinationsCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#destinationsCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#destinationsCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#destinationsCarousel" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#destinationsCarousel" data-bs-slide-to="3"></button>
+        <button type="button" data-bs-target="#destinationsCarousel" data-bs-slide-to="4"></button>
+        <button type="button" data-bs-target="#destinationsCarousel" data-bs-slide-to="5"></button>
+        <button type="button" data-bs-target="#destinationsCarousel" data-bs-slide-to="6"></button>
+        <button type="button" data-bs-target="#destinationsCarousel" data-bs-slide-to="7"></button>
+        <button type="button" data-bs-target="#destinationsCarousel" data-bs-slide-to="8"></button>
+      </div>
+
+      <div class="carousel-inner rounded-4 shadow">
+        <div class="carousel-item active">
+          <img src="images/baiterek.jpg" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Baiterek">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+            <h5>Baiterek Tower</h5>
+            <p>Iconic landmark in Astana</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/shymbulak.jpg" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Shymbulak">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+            <h5>Shymbulak Mountain Resort</h5>
+            <p>Beautiful ski resort in Almaty</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/burjkhalifa.jpg" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Burj Khalifa">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+            <h5>Burj Khalifa</h5>
+            <p>The tallest building in Dubai</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/bao.jpg" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Big Almaty Lake">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+            <h5>Big Almaty Lake</h5>
+            <p>Alpine lake in Almaty mountains</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/khanshatyr.jpg" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Khan Shatyr">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+            <h5>Khan Shatyr</h5>
+            <p>Architectural wonder in Astana</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/dubaimarina.jpg" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Dubai Marina">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+            <h5>Dubai Marina</h5>
+            <p>Stunning waterfront view in UAE</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/medeu.jpg" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Medeu">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+            <h5>Medeu</h5>
+            <p>High-altitude outdoor ice rink</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/nuralem.jpg" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Nur Alem">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+            <h5>Nur Alem Sphere</h5>
+            <p>Museum of Future Energy in Astana</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/palm.jpg" class="d-block w-100 object-fit-cover" style="height: 480px;" alt="Palm Jumeirah">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+            <h5>Palm Jumeirah</h5>
+            <p>Famous palm-shaped island</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#destinationsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#destinationsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       4. CARDS GRID (Task 3 & Task 8)
+  =========================================== -->
+  <div class="container mt-5 pt-4">
+    <span class="text-uppercase small fw-bold text-muted d-block mb-1">TRENDING DESTINATIONS</span>
+    <h2 class="h3 fw-bold mb-4">Top Destinations Today</h2>
+
+    <div class="row g-4">
+      <!-- Astana -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <img src="images/astana.jpg" class="card-img-top object-fit-cover" height="220" alt="Astana">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Astana, Kazakhstan</h5>
+            <p class="card-text text-muted">Modern architecture and vibrant culture in Eurasia.</p>
+            <a href="destinations.html" class="btn btn-primary w-100">Explore Flights</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Almaty -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <img src="images/almaty.jpg" class="card-img-top object-fit-cover" height="220" alt="Almaty">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Almaty, Kazakhstan</h5>
+            <p class="card-text text-muted">Surrounded by majestic mountains and nature.</p>
+            <a href="destinations.html" class="btn btn-primary w-100">Explore Flights</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dubai -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <img src="images/dubai.jpg" class="card-img-top object-fit-cover" height="220" alt="Dubai">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Dubai, UAE</h5>
+            <p class="card-text text-muted">World-class skyscrapers and luxury experiences.</p>
+            <a href="destinations.html" class="btn btn-primary w-100">Explore Flights</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- UNIFIED FOOTER -->
+<footer class="custom-footer py-4 mt-5">
+  <div class="container text-center">
+    <p class="footer-team mb-1">
+      <span>Developed by Team:</span>
+      <strong>Seifullina Adema, Zholshara Khanshaiym </strong>
+      <span class="mx-2 opacity-50">|</span>
+      <span>Group:</span>
+      <strong>SE-2503</strong>
+    </p>
+    <p class="footer-copy mb-0">© 2026 Flyora Travel Inc. All rights reserved.</p>
   </div>
 </footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="script.js"></script>
+<script>
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-theme");
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById("theme-toggle");
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", function () {
+        document.body.classList.toggle("dark-theme");
+        if (document.body.classList.contains("dark-theme")) {
+          localStorage.setItem("theme", "dark");
+        } else {
+          localStorage.setItem("theme", "light");
+        }
+      });
+    }
+  });
+</script>
 </body>
 </html>
