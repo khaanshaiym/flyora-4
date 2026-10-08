@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+/* ==========================================
+PART 1. CSS MEDIA QUERIES (Task 1 & Task 2)
+========================================== */
+
+/* Task 1: Responsive Typography */
+h1 {
+    font-size: 2.8rem;
+}
+p {
+    font-size: 1.1rem;
+}
+@media (max-width: 992px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    p {
+        font-size: 1rem;
+    }
+}
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Task 2: Pure CSS Responsive Card Group */
+.custom-card-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.custom-card-item {
+    flex: 1 1 calc(33.333% - 20px);
+}
+
+@media (max-width: 992px) {
+    .custom-card-item {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-card-item {
+        flex: 1 1 100%;
+    }
+}
+/* =========================================================
+VARIABLES & THEMING (EXACT FROM DESIGN)
+========================================================= */
+:root {
+    --cream: #faf7f5;
+    --cream-dark: #f0eae5;
+    --white: #ffffff;
+    --plum: #3b173d;
+    --plum-dark: #270e28;
+    --plum-light: #522455;
+    --lavender: #e8dedb;
+    --gold: #d8b47c;
+    --text: #221a24;
+    --muted: #837885;
+    --border: #eae3e0;
+    --shadow: 0 20px 50px rgba(59, 23, 61, 0.08);
+
+    --bs-primary: #3b173d;
+    --bs-primary-rgb: 59, 23, 61;
+}
+
+body.dark-theme {
+    background-color: #120b13 !important;
+    color: #f0e6f2 !important;
+}
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6,
+body.dark-theme p,
+body.dark-theme span,
+body.dark-theme label,
+body.dark-theme small {
+    color: #f0e6f2 !important;
+}
+
+
+body.dark-theme .text-muted,
+body.dark-theme .opacity-50,
+body.dark-theme .opacity-75 {
+    color: #cbb8cf !important;
+    opacity: 1 !important;
+}
+
+
+body.dark-theme .card {
+    background-color: #1e1321 !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+
+body.dark-theme .form-control,
+body.dark-theme .form-select,
+body.dark-theme input {
+    background-color: #2a1b2e !important;
+    color: #ffffff !important;
+    border: 1px solid #3d2843 !important;
+}
+
+body.dark-theme .form-control::placeholder {
+    color: #a491a8 !important;
+}
+
+
+body.dark-theme .navbar-nav .nav-link {
+    color: #e2d5e5 !important;
+}
+
+body.dark-theme .navbar-nav .nav-link.active {
+    color: #ffffff !important;
+    border-bottom-color: #ffffff !important;
+}
+
+body.dark-theme .logo-text,
+body.dark-theme .logo-icon {
+    color: #ffffff !important;
+}
+
+body.dark-theme .btn-dark {
+    background-color: #f0e6f2 !important;
+    color: #120b13 !important;
+    border: none;
+}
+body.dark-theme .text-muted,
+body.dark-theme .card-text {
+    color: #c4b5c7 !important;
+}
+
+body.dark-theme header,
+body.dark-theme .navbar,
+body.dark-theme .card,
+body.dark-theme .search-card,
+body.dark-theme .bg-white,
+body.dark-theme .bg-light {
+    background-color: #26182a !important;
+    color: #f8f3f9 !important;
+    border-color: #3d2942 !important;
+}
+
+
+body.dark-theme .form-control,
+body.dark-theme .form-select {
+    background-color: #1f1422 !important;
+    border: 1px solid #3d2942 !important;
+    color: #ffffff !important;
+}
+
+body.dark-theme .form-select option {
+    background-color: #1f1422;
+    color: #ffffff;
+}
+
+body.dark-theme #theme-toggle {
+    background-color: #26182a !important;
+    border-color: #3d2942 !important;
+    color: #f8f3f9 !important;
+}
+
+.navbar-nav .nav-link {
+    opacity: 0.75;
+    transition: all 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    opacity: 1;
+}
+
+.navbar-nav .nav-link.active {
+    opacity: 1 !important;
+    font-weight: 700 !important;
+    color: var(--plum) !important;
+    border-bottom: 2px solid var(--plum);
+}
+
+body.dark-theme .navbar-nav .nav-link.active {
+    color: #ffffff !important;
+    border-bottom-color: #ffffff;
+}
+
+/* =========================================================
+BASE STYLES
+========================================================= */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background .35s ease, color .35s ease;
+}
+h1, h2, .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--plum);
+}
+
+body.dark-theme h1,
+body.dark-theme h2 {
+    color: var(--plum);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* =========================================================
+FLYORA BRANDING & LOGO STYLES
+========================================================= */
+.logo a,
+.navbar-brand {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    text-decoration: none !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.logo-icon,
+.logo-symbol {
+    width: 32px !important;
+    height: 32px !important;
+    background-color: #3b173d !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 15px !important;
+    flex-shrink: 0 !important;
+}
+
+.logo-text {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.4px !important;
+    color: #1e1122 !important;
+}
+
+body.dark-theme .logo-icon,
+body.dark-theme .logo-symbol {
+    background-color: #ba8cbe !important;
+    color: #140d16 !important;
+}
+
+body.dark-theme .logo-text {
+    color: #f8f3f9 !important;
+}
+
+/* =========================================================
+HEADER & BOOTSTRAP NAVBAR OVERRIDES
+========================================================= */
+.navbar {
+    padding: 20px 0;
+    background: transparent !important;
+}
+
+.nav-link {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text);
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #3b173d !important;
+}
+#theme-toggle {
+    background-color: #ffffff !important;
+    border: 1px solid #e2dad7 !important;
+    color: #3b173d !important;
+    padding: 6px 18px !important;
+    border-radius: 30px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+#theme-toggle:hover {
+    background-color: #f0eae5 !important;
+}
+
+body.dark-theme #theme-toggle {
+    background-color: #26182a !important;
+    border-color: #3d2942 !important;
+    color: #f8f3f9 !important;
+}
+.btn-explore,
+.btn-primary,
+.btn-dark {
+    background-color: #3b173d !important;
+    border-color: #3b173d !important;
+    color: #ffffff !important;
+    border-radius: 30px !important;
+    padding: 10px 24px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-explore:hover,
+.btn-primary:hover,
+.btn-dark:hover {
+    background-color: #270e28 !important;
+    border-color: #270e28 !important;
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+SEARCH CARD & FORMS
+========================================================= */
+.search-card,
+.flight-search-container {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.form-control,
+.form-select {
+    background-color: #f5ede9 !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+    color: #3b173d !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 2px #3b173d !important;
+}
+
+/* =========================================================
+CARDS & UTILITIES
+========================================================= */
+.card {
+    border-radius: 20px !important;
+    border: none !important;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow) !important;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+footer.custom-footer {
+    background-color: #1a0f1c;
+    color: #ffffff;
+}
+
+footer.custom-footer .footer-team {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+footer.custom-footer .footer-copy {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+.card, .search-card {
+    border-radius: 1rem !important;
+    border: none !important;
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+.form-control, .form-select {
+    background-color: #f8f5f8 !important;
+    border: 1px solid transparent !important;
+    border-radius: 0.75rem !important;
+    padding: 0.75rem 1rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #3b173d !important;
+    box-shadow: none !important;
+}
+body.dark-theme footer.custom-footer {
+    background-color: #0d070e;
+}
+body.dark-theme {
+    background-color: #120b13 !important;
+    color: #f0e6f2 !important;
+}
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6,
+body.dark-theme p,
+body.dark-theme span,
+body.dark-theme label,
+body.dark-theme small,
+body.dark-theme strong,
+body.dark-theme a {
+    color: #f0e6f2 !important;
+}
+body.dark-theme .text-muted,
+body.dark-theme .opacity-50,
+body.dark-theme .opacity-75 {
+    color: #cbb8cf !important;
+    opacity: 1 !important;
+}
+body.dark-theme .card {
+    background-color: #1e1321 !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+body.dark-theme .form-control,
+body.dark-theme .form-select,
+body.dark-theme input {
+    background-color: #2a1b2e !important;
+    color: #ffffff !important;
+    border: 1px solid #4a2d52 !important;
+}
+
+body.dark-theme .form-control::placeholder {
+    color: #a491a8 !important;
+}
+body.dark-theme .navbar-nav .nav-link {
+    color: #e2d5e5 !important;
+}
+
+body.dark-theme .navbar-nav .nav-link.active {
+    color: #ffffff !important;
+    border-bottom-color: #ffffff !important;
+}
+body.dark-theme .btn-dark {
+    background-color: #f0e6f2 !important;
+    color: #120b13 !important;
+    border: none;
+}
+
+body.dark-theme .btn-outline-secondary {
+    color: #f0e6f2 !important;
+    border-color: #f0e6f2 !important;
+}
+.carousel-image {
+    height: 480px;
+    object-fit: cover;
+}
+
+@media (max-width: 576px) {
+    .carousel-image {
+        height: 250px;
+    }
+}
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-footer {
+    margin-top: auto;
+}
+/* ==================== FOOTER ==================== */
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-footer {
+    margin-top: auto;
+    background-color: #16071a;
+    color: #ffffff;
+    width: 100%;
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.site-footer p {
+    margin-bottom: 0;
+}
+
+.site-footer strong {
+    color: #ffffff;
+}
+
+.footer-divider {
+    margin: 0 10px;
+    color: #ffffff;
+}
+
+.footer-copy {
+    margin-top: 8px !important;
+    color: #aaa0aa !important;
+    font-size: 14px;
+}

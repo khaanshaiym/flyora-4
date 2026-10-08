@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flyora - Contact</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    >
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<!-- ==================== NAVBAR ==================== -->
+<header class="border-bottom">
+
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+
+            <!-- LOGO -->
+            <a class="navbar-brand logo" href="index.html">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text">Flyora</span>
+            </a>
+
+            <!-- MOBILE MENU BUTTON -->
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- NAVIGATION -->
+            <div
+                    class="collapse navbar-collapse justify-content-end"
+                    id="navbarNav"
+            >
+
+                <ul class="navbar-nav me-3 align-items-center gap-2">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="flights.html">
+                            Flights
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="destinations.html">
+                            Destinations
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- NAVBAR BUTTONS -->
+                <div class="d-flex align-items-center gap-2">
+
+                    <button
+                            id="theme-toggle"
+                            type="button"
+                            class="btn"
+                    >
+                        Toggle Theme
+                    </button>
+
+                    <a
+                            href="destinations.html"
+                            class="btn btn-primary btn-explore"
+                    >
+                        Explore →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- ==================== MAIN CONTENT ==================== -->
+<main class="flex-grow-1 py-5">
+
+    <div
+            class="container"
+            style="max-width: 700px;"
+    >
+
+        <!-- PAGE TITLE -->
+        <div class="text-center mb-4">
+
+                <span
+                        class="text-uppercase tracking-widest text-muted small fw-semibold"
+                >
+                    Get in Touch
+                </span>
+
+            <h1
+                    class="display-5 fw-bold mt-2 mb-2"
+                    style="font-family: serif;"
+            >
+                Contact Us
+            </h1>
+
+            <p class="text-muted">
+                Have questions? We are here to help you plan your next travel.
+            </p>
+
+        </div>
+
+
+        <!-- ==================== CONTACT FORM ==================== -->
+
+        <div class="card p-4 shadow-sm border-0 rounded-4">
+
+            <form id="contactForm">
+
+                <!-- NAME -->
+                <div class="mb-3">
+
+                    <label
+                            for="name"
+                            class="form-label fw-medium small"
+                    >
+                        Your Name
+                    </label>
+
+                    <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="form-control form-control-lg border-0 bg-light"
+                            placeholder="Enter your full name"
+                            required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="mb-3">
+
+                    <label
+                            for="email"
+                            class="form-label fw-medium small"
+                    >
+                        Email Address
+                    </label>
+
+                    <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-control form-control-lg border-0 bg-light"
+                            placeholder="name@example.com"
+                            required
+                    >
+
+                </div>
+
+
+                <!-- SUBJECT -->
+                <div class="mb-3">
+
+                    <label
+                            for="topic"
+                            class="form-label fw-medium small"
+                    >
+                        Subject
+                    </label>
+
+                    <input
+                            type="text"
+                            id="topic"
+                            name="topic"
+                            class="form-control form-control-lg border-0 bg-light"
+                            placeholder="Flight inquiry, booking, etc."
+                            required
+                    >
+
+                </div>
+
+
+                <!-- MESSAGE -->
+                <div class="mb-3">
+
+                    <label
+                            for="message"
+                            class="form-label fw-medium small"
+                    >
+                        Message
+                    </label>
+
+                    <textarea
+                            id="message"
+                            name="message"
+                            class="form-control border-0 bg-light"
+                            rows="4"
+                            placeholder="How can we help you?"
+                            required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- SUCCESS / ERROR MESSAGE -->
+                <p
+                        id="formNotice"
+                        class="form-text mt-2 mb-3 fw-bold"
+                ></p>
+
+
+                <!-- SUBMIT BUTTON -->
+                <button
+                        type="submit"
+                        class="btn btn-dark w-100 py-3 rounded-pill fw-semibold"
+                >
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ==================== FOOTER ==================== -->
+
+<footer class="site-footer">
+
+    <div class="container text-center">
+
+        <p class="mb-2">
+
+            Developed by Team:
+
+            <strong>Seifullina Adema</strong>,
+
+            <strong>Zholshara Khanshaiym</strong>
+
+            <span class="footer-divider">|</span>
+
+            Group: <strong>SE-2503</strong>
+
+        </p>
+
+        <p class="mb-0 footer-copy">
+            © 2026 Flyora Travel Inc. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- ==================== BOOTSTRAP JS ==================== -->
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<!-- ==================== CUSTOM JAVASCRIPT ==================== -->
+
+<script>
+
+    /* ==================== DARK MODE ==================== */
+
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-theme");
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /* ---------- Theme Toggle ---------- */
+
+        const toggleBtn =
+            document.getElementById("theme-toggle");
+
+        if (toggleBtn) {
+
+            toggleBtn.addEventListener("click", function () {
+
+                document.body.classList.toggle("dark-theme");
+
+                if (
+                    document.body.classList.contains("dark-theme")
+                ) {
+
+                    localStorage.setItem("theme", "dark");
+
+                } else {
+
+                    localStorage.setItem("theme", "light");
+
+                }
+
+            });
+
+        }
+
+
+        /* ==================== CONTACT FORM ==================== */
+
+        const contactForm =
+            document.getElementById("contactForm");
+
+        const formNotice =
+            document.getElementById("formNotice");
+
+
+        if (contactForm) {
+
+            contactForm.addEventListener(
+                "submit",
+                function (event) {
+
+                    event.preventDefault();
+
+                    const name =
+                        document.getElementById("name").value.trim();
+
+                    const topic =
+                        document.getElementById("topic").value.trim();
+
+
+                    formNotice.textContent =
+                        `Thank you, ${name}! Your message regarding "${topic}" has been sent successfully.`;
+
+                    formNotice.classList.remove("text-danger");
+
+                    formNotice.classList.add("text-success");
+
+
+                    contactForm.reset();
+
+                }
+            );
+
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+      
+        <rect x="0" y="0" width="900" height="520" fill="#e6caa2"/>
+        <circle cx="720" cy="105" r="72" fill="#fff1cf"/>
+        <rect y="385" width="900" height="135" fill="#b77b55"/>
+        <path d="M430 385 L475 80 L520 385 Z" fill="#5b304f"/>
+        <path d="M470 85 L475 35 L482 85 Z" fill="#5b304f"/>
+        <rect x="280" y="260" width="105" height="125" fill="#6c3d5d"/>
+        <rect x="600" y="220" width="120" height="165" fill="#70445e"/>
+        <path d="M0 385 Q250 330 450 385 T900 385 L900 520 L0 520 Z" fill="#9c684e"/>
+        
+      <rect x="35" y="35" width="830" height="450" rx="28" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="2"/>
+      <text x="55" y="455" fill="#fff" font-family="Arial, sans-serif" font-size="34" font-weight="700">FLYORA</text>
+      <text x="55" y="480" fill="#fff" fill-opacity=".85" font-family="Arial, sans-serif" font-size="17">Fly beyond the ordinary</text>
+    </svg>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flyora - Destinations</title>
+    <!-- Bootstrap CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    >
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- NAVBAR -->
+<header class="border-bottom py-2">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <a class="navbar-brand logo d-flex align-items-center gap-2" href="index.html">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text fw-bold">Flyora</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3 align-items-center gap-3">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <button id="theme-toggle" class="btn btn-outline-secondary btn-sm">Toggle Theme</button>
+                    <a href="flights.html" class="btn btn-dark rounded-pill px-3 py-2 btn-sm">Explore →</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- MAIN CONTENT  -->
+<main class="flex-grow-1 py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-uppercase tracking-widest text-muted small fw-semibold">Destinations</span>
+            <h1 class="display-5 fw-bold mt-2" style="font-family: serif;">Explore Extraordinary Places</h1>
+            <p class="text-muted">Discover handpicked destinations across Kazakhstan and around the world.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Astana -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+                    <img src="images/astana.jpg" class="card-img-top object-fit-cover" height="220" alt="Astana">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <h5 class="fw-bold mb-1">Astana</h5>
+                            <p class="text-muted small">Modern capital architecture</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                            <span class="fw-bold text-dark">From ₸38,000</span>
+                            <a href="flights.html" class="btn btn-dark btn-sm rounded-pill px-3">Explore Flights</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Almaty -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+                    <img src="images/almaty.jpg" class="card-img-top object-fit-cover" height="220" alt="Almaty">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <h5 class="fw-bold mb-1">Almaty</h5>
+                            <p class="text-muted small">Mountain trails & cultural hubs</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                            <span class="fw-bold text-dark">From ₸32,000</span>
+                            <a href="flights.html" class="btn btn-dark btn-sm rounded-pill px-3">Explore Flights</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dubai -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+                    <img src="images/dubai.jpg" class="card-img-top object-fit-cover" height="220" alt="Dubai">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <h5 class="fw-bold mb-1">Dubai</h5>
+                            <p class="text-muted small">Futuristic skyline & luxury</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                            <span class="fw-bold text-dark">From ₸92,000</span>
+                            <a href="flights.html" class="btn btn-dark btn-sm rounded-pill px-3">Explore Flights</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER-->
+<footer class="site-footer">
+    <div class="container text-center">
+        <p class="mb-2">
+            Developed by Team:
+            <strong>Seifullina Adema</strong>,
+            <strong>Zholshara Khanshaiym</strong>
+            <span class="footer-divider">|</span>
+            Group: <strong>SE-2503</strong>
+        </p>
+        <p class="mb-0 footer-copy">
+            © 2026 Flyora Travel Inc. All rights reserved.
+        </p>
+    </div>
+</footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-theme");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleBtn = document.getElementById("theme-toggle");
+
+        if (toggleBtn) {
+            toggleBtn.addEventListener("click", function () {
+                document.body.classList.toggle("dark-theme");
+                if (document.body.classList.contains("dark-theme")) {
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    localStorage.setItem("theme", "light");
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
