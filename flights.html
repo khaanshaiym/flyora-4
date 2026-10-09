@@ -36,7 +36,6 @@
 
             </a>
 
-
             <!-- MOBILE MENU -->
             <button
                     class="navbar-toggler"
@@ -51,7 +50,6 @@
 
             </button>
 
-
             <!-- NAVIGATION -->
             <div
                     class="collapse navbar-collapse justify-content-end"
@@ -60,39 +58,30 @@
                 <ul class="navbar-nav ms-auto me-3 align-items-center gap-3">
 
                     <li class="nav-item">
-                        <a
-                                class="nav-link"
-                                href="index.html">
+                        <a class="nav-link" href="index.html">
                             Home
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a
-                                class="nav-link active"
-                                href="flights.html">
+                        <a class="nav-link active" href="flights.html">
                             Flights
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a
-                                class="nav-link"
-                                href="destinations.html">
+                        <a class="nav-link" href="destinations.html">
                             Destinations
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a
-                                class="nav-link"
-                                href="contact.html">
+                        <a class="nav-link" href="contact.html">
                             Contact
                         </a>
                     </li>
 
                 </ul>
-
 
                 <!-- NAVBAR BUTTONS -->
                 <div class="d-flex align-items-center gap-2">
@@ -105,7 +94,6 @@
                         Toggle Theme
 
                     </button>
-
 
                     <a
                             href="destinations.html"
@@ -132,7 +120,6 @@
 
     <div class="container">
 
-
         <!-- PAGE TITLE -->
 
         <div class="text-center mb-5">
@@ -145,15 +132,11 @@
             </span>
 
             <h1 class="display-5 fw-bold mt-2">
-
                 Available Flights
-
             </h1>
 
             <p class="text-muted">
-
                 Find and reserve your next route with Flyora.
-
             </p>
 
         </div>
@@ -182,7 +165,6 @@
                         <label class="form-label small fw-semibold">
                             Stops
                         </label>
-
 
                         <div class="form-check">
 
@@ -287,7 +269,6 @@
                     <div
                             class="card p-4 shadow-sm border-0 rounded-4 flight-card d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
 
-
                         <!-- Airline -->
 
                         <div>
@@ -344,7 +325,6 @@
 
                     <div
                             class="card p-4 shadow-sm border-0 rounded-4 flight-card d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
-
 
                         <!-- Airline -->
 
@@ -519,20 +499,12 @@
                         <!-- BOOK BUTTON -->
 
                         <div class="col-12 mt-3">
+
                             <button
-                                    type="button"
-                                    class="btn btn-dark btn-sm rounded-pill px-4"
-                                    onclick="selectFlight('Flyora Air — Astana to Almaty')">
+                                    type="submit"
+                                    class="btn btn-dark btn-sm rounded-pill px-4">
 
-                                Select
-
-                            </button>
-                            <button
-                                    type="button"
-                                    class="btn btn-dark btn-sm rounded-pill px-4"
-                                    onclick="selectFlight('Air Astana — Almaty to Dubai')">
-
-                                Select
+                                Reserve Flight
 
                             </button>
 
@@ -592,6 +564,22 @@
 
 <script>
 
+    function selectFlight(flightName) {
+
+        const selectedFlight =
+            document.getElementById("selectedFlight");
+
+        selectedFlight.value = flightName;
+
+        selectedFlight.style.backgroundColor = "#eee1f0";
+
+        document.getElementById("booking-form").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+
+
     document.addEventListener("DOMContentLoaded", function () {
 
 
@@ -606,7 +594,6 @@
             themeToggle.addEventListener("click", function () {
 
                 document.body.classList.toggle("dark-theme");
-
 
                 if (document.body.classList.contains("dark-theme")) {
 
@@ -623,7 +610,7 @@
         }
 
 
-        /* LOAD SAVED THEME */
+        /* ==================== LOAD SAVED THEME ==================== */
 
         if (localStorage.getItem("theme") === "dark") {
 
@@ -633,119 +620,19 @@
 
 
         /* ==================== FLIGHT SELECTION ==================== */
-        <script>
 
-            function selectFlight(flightName) {
-
-            const selectedFlight =
-            document.getElementById("selectedFlight");
-
-            selectedFlight.value = flightName;
-
-            selectedFlight.style.backgroundColor = "#eee1f0";
-
-            document.getElementById("booking-form")
-            .scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-        }
+        const selectButtons =
+            document.querySelectorAll(".select-flight");
 
 
-            /* ==================== THEME ==================== */
+        selectButtons.forEach(function (button) {
 
-            document.addEventListener("DOMContentLoaded", function () {
+            button.addEventListener("click", function () {
 
-            const themeToggle =
-            document.getElementById("theme-toggle");
+                const flightName =
+                    button.getAttribute("data-flight");
 
-            if (themeToggle) {
-
-            themeToggle.addEventListener("click", function () {
-
-            document.body.classList.toggle("dark-theme");
-
-            if (document.body.classList.contains("dark-theme")) {
-
-            localStorage.setItem("theme", "dark");
-
-        } else {
-
-            localStorage.setItem("theme", "light");
-
-        }
-
-        });
-
-        }
-
-
-            if (localStorage.getItem("theme") === "dark") {
-
-            document.body.classList.add("dark-theme");
-
-        }
-
-
-            /* ==================== BOOKING ==================== */
-
-            const bookingForm =
-            document.getElementById("booking-form");
-
-            const bookingMessage =
-            document.getElementById("bookingNotice");
-
-
-            bookingForm.addEventListener("submit", function (event) {
-
-            event.preventDefault();
-
-            const selectedFlight =
-            document.getElementById("selectedFlight");
-
-
-            if (selectedFlight.value === "") {
-
-            bookingMessage.textContent =
-            "Please select a flight first.";
-
-            bookingMessage.style.color = "red";
-
-            return;
-
-        }
-
-            bookingMessage.textContent =
-            "Your flight has been reserved successfully!"
-            bookingMessage.style.color = "green";
-
-        });
-
-        });
-
-</script>
-
-                /* Remove previous active state */
-
-                selectButtons.forEach(function (item) {
-
-                    item.classList.remove("selected");
-
-                });
-
-
-                /* Add active state */
-
-                button.classList.add("selected");
-
-
-                /* Scroll to reservation */
-
-                document.getElementById("booking-form")
-                    .scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
+                selectFlight(flightName);
 
             });
 
@@ -766,11 +653,13 @@
             event.preventDefault();
 
 
-            /* Check flight */
+            const selectedFlight =
+                document.getElementById("selectedFlight");
+
 
             if (
-                selectedFlightInput.value === "" ||
-                selectedFlightInput.value === "Select a flight above"
+                selectedFlight.value === "" ||
+                selectedFlight.value === "Select a flight above"
             ) {
 
                 bookingMessage.textContent =
@@ -781,21 +670,12 @@
                 return;
 
             }
-
-
-            /* Success */
-
             bookingMessage.textContent =
-                "Your flight has been reserved successfully!";
-
+                "Your flight has been reserved successfully!"
             bookingMessage.style.color = "green";
-
-
         });
 
     });
-
 </script>
-
 </body>
 </html>
