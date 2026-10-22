@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 /* ==========================================
-PART 1. CSS MEDIA QUERIES (Task 1 & Task 2)
-========================================== */
+   PART 1. CSS MEDIA QUERIES (Task 1 & Task 2)
+   ========================================== */
 
 /* Task 1: Responsive Typography */
 h1 {
@@ -50,8 +50,8 @@ p {
     }
 }
 /* =========================================================
-VARIABLES & THEMING (EXACT FROM DESIGN)
-========================================================= */
+   VARIABLES & THEMING (EXACT FROM DESIGN)
+   ========================================================= */
 :root {
     --cream: #faf7f5;
     --cream-dark: #f0eae5;
@@ -193,8 +193,8 @@ body.dark-theme .navbar-nav .nav-link.active {
 }
 
 /* =========================================================
-BASE STYLES
-========================================================= */
+   BASE STYLES
+   ========================================================= */
 * {
     box-sizing: border-box;
 }
@@ -232,8 +232,8 @@ a {
 }
 
 /* =========================================================
-FLYORA BRANDING & LOGO STYLES
-========================================================= */
+   FLYORA BRANDING & LOGO STYLES
+   ========================================================= */
 .logo a,
 .navbar-brand {
     display: inline-flex !important;
@@ -276,8 +276,8 @@ body.dark-theme .logo-text {
 }
 
 /* =========================================================
-HEADER & BOOTSTRAP NAVBAR OVERRIDES
-========================================================= */
+   HEADER & BOOTSTRAP NAVBAR OVERRIDES
+   ========================================================= */
 .navbar {
     padding: 20px 0;
     background: transparent !important;
@@ -337,8 +337,8 @@ body.dark-theme #theme-toggle {
 }
 
 /* =========================================================
-SEARCH CARD & FORMS
-========================================================= */
+   SEARCH CARD & FORMS
+   ========================================================= */
 .search-card,
 .flight-search-container {
     background: #ffffff;
@@ -363,8 +363,8 @@ SEARCH CARD & FORMS
 }
 
 /* =========================================================
-CARDS & UTILITIES
-========================================================= */
+   CARDS & UTILITIES
+   ========================================================= */
 .card {
     border-radius: 20px !important;
     border: none !important;
@@ -473,68 +473,4 @@ body.dark-theme .btn-dark {
 body.dark-theme .btn-outline-secondary {
     color: #f0e6f2 !important;
     border-color: #f0e6f2 !important;
-}
-.carousel-image {
-    height: 480px;
-    object-fit: cover;
-}
-
-@media (max-width: 576px) {
-    .carousel-image {
-        height: 250px;
-    }
-}
-html,
-body {
-    min-height: 100%;
-}
-
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.site-footer {
-    margin-top: auto;
-}
-/* ==================== FOOTER ==================== */
-
-html,
-body {
-    min-height: 100%;
-}
-
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.site-footer {
-    margin-top: auto;
-    background-color: #16071a;
-    color: #ffffff;
-    width: 100%;
-    padding: 25px 20px;
-    text-align: center;
-}
-
-.site-footer p {
-    margin-bottom: 0;
-}
-
-.site-footer strong {
-    color: #ffffff;
-}
-
-.footer-divider {
-    margin: 0 10px;
-    color: #ffffff;
-}
-
-.footer-copy {
-    margin-top: 8px !important;
-    color: #aaa0aa !important;
-    font-size: 14px;
 }

@@ -1,94 +1,123 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-    // 1. THEME TOGGLE (Тема: Light / Dark)
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('flyora_theme');
 
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-theme");
     }
 
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
-            localStorage.setItem('flyora_theme', currentTheme);
-        });
-    }
-
-    // 2. FLIGHT SEARCH FORM (Поиск билетов на главной)
-    const searchForm = document.getElementById('flightSearch') || document.querySelector('.search-form');
-    if (searchForm) {
-        searchForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const fromSelect = document.getElementById('from') || document.querySelector('select[name="from"]');
-            const toSelect = document.getElementById('to') || document.querySelector('select[name="to"]');
-
-            let fromVal = fromSelect ? fromSelect.value : '';
-            let toVal = toSelect ? toSelect.value : '';
-
-            if (!fromVal && fromSelect && fromSelect.selectedIndex >= 0) {
-                fromVal = fromSelect.options[fromSelect.selectedIndex].text;
-            }
-            if (!toVal && toSelect && toSelect.selectedIndex >= 0) {
-                toVal = toSelect.options[toSelect.selectedIndex].text;
-            }
-
-            const isFromValid = fromVal && !fromVal.toLowerCase().includes('choose');
-            const isToValid = toVal && !toVal.toLowerCase().includes('choose');
-
-            if (!isFromValid || !isToValid) {
-                alert('Please select both origin and destination cities!');
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) {
+        toggleBtn.addEventListener("click", function () {
+            document.body.classList.toggle("dark-theme");
+            if (document.body.classList.contains("dark-theme")) {
+                localStorage.setItem("theme", "dark");
             } else {
-                alert(`Searching flights from ${fromVal} to ${toVal}... Flight options found!`);
+                localStorage.setItem("theme", "light");
             }
         });
     }
 
-    // 3. BOOKING FORM (Страница Flights)
-    const bookingForm = document.getElementById('booking-form');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const passengers = document.getElementById('passengers').value;
-
-            alert(`Thank you, ${name}! Reservation for ${passengers} passenger(s) confirmed.`);
-            bookingForm.reset();
-        });
-    }
-
-    // 4. CONTACT FORM (Страница Contact)
-    const contactForm = document.getElementById('contactForm');
-    const formNotice = document.getElementById('formNotice');
-
+    // ==========================================
+    // 2. TASK 1: FORM VALIDATION
+    // ==========================================
+    const contactForm = document.querySelector("#contactForm");
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const topic = document.getElementById('topic').value;
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault(); // Предотвращаем стандартную отправку для проверки
 
-            if (formNotice) {
-                formNotice.className = 'form-text text-success mt-2 fw-bold';
-                formNotice.textContent = `Thank you, ${name}! Your message regarding "${topic}" has been sent successfully.`;
-            } else {
-                alert(`Thank you, ${name}! Your message has been sent.`);
+            const emailInput = document.querySelector("#email");
+            const passInput = document.querySelector("#password");
+            const errorMsg = document.querySelector("#errorMsg");
+
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailInput && !emailRegex.test(emailInput.value)) {
+                if (errorMsg) errorMsg.innerText = "Please enter a valid email address.";
+                return;
             }
 
+
+            if (passInput && passInput.value.length < 6) {
+                if (errorMsg) errorMsg.innerText = "Password must be at least 6 characters long.";
+                return;
+            }
+
+
+            if (errorMsg) errorMsg.innerText = "";
+            alert("Form submitted successfully!");
             contactForm.reset();
         });
     }
 
-    // 5. FLIGHT SELECT BUTTONS (Кнопки "Select" в карточках билетов)
-    const selectButtons = document.querySelectorAll('.flight-list button, article button');
-    selectButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            alert('Flight selected! Please complete the Quick Reservation form below.');
-            const bookingSection = document.getElementById('booking-form');
-            if (bookingSection) {
-                bookingSection.scrollIntoView({ behavior: 'smooth' });
+    const accButtons = document.querySelectorAll(".accordion-btn");
+    accButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const content = button.nextElementSibling;
+            if (content) {
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
             }
         });
     });
 
+
+    const popupModal = document.getElementById("popupModal");
+    const openPopupBtn = document.getElementById("openPopupBtn");
+    const closePopupBtn = document.getElementById("closePopupBtn");
+
+    if (openPopupBtn && popupModal) {
+        openPopupBtn.addEventListener("click", () => {
+            popupModal.style.display = "block";
+        });
+    }
+
+    if (closePopupBtn && popupModal) {
+        closePopupBtn.addEventListener("click", () => {
+            popupModal.style.display = "none";
+        });
+    }
+
+
+    window.addEventListener("click", (e) => {
+        if (popupModal && e.target === popupModal) {
+            popupModal.style.display = "none";
+        }
+    });
+
+
+    const bgColors = ["#faf7f5", "#e3f2fd", "#e8f5e9", "#fff3e0", "#f3e5f5"];
+    let colorIdx = 0;
+    const colorBtn = document.getElementById("changeBgBtn");
+
+    if (colorBtn) {
+        colorBtn.addEventListener("click", () => {
+            colorIdx = (colorIdx + 1) % bgColors.length;
+            document.body.style.backgroundColor = bgColors[colorIdx];
+        });
+    }
+
+
+    function updateLiveClock() {
+        const clockEl = document.getElementById("liveClock");
+        if (clockEl) {
+            const now = new Date();
+            const options = {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            clockEl.innerText = now.toLocaleDateString('en-US', options);
+        }
+    }
+
+
+    setInterval(updateLiveClock, 1000);
+    updateLiveClock();
 });
