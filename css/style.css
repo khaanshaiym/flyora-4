@@ -474,3 +474,14 @@ body.dark-theme .btn-outline-secondary {
     color: #f0e6f2 !important;
     border-color: #f0e6f2 !important;
 }
+
+.accordion-content {
+    display: none;
+    overflow: hidden;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.accordion-content.open {
+    display: block !important;
+}

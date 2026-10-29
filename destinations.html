@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flyora - Destinations</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- JavaScript Link (Assignment #4) -->
     <script src="js/script.js" defer></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
-
 
 <header class="border-bottom py-2">
     <div class="container">
@@ -42,10 +38,8 @@
     </div>
 </header>
 
-
 <main class="flex-grow-1 py-5">
     <div class="container">
-
 
         <div class="text-center mb-3">
             <span class="badge bg-dark px-3 py-2 fs-6 rounded-pill">
@@ -58,7 +52,6 @@
             <h1 class="display-5 fw-bold mt-2" style="font-family: serif;">Explore Extraordinary Places</h1>
             <p class="text-muted">Discover handpicked destinations across Kazakhstan and around the world.</p>
 
-
             <div class="d-flex justify-content-center gap-2 mt-3">
                 <button id="changeBgBtn" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
                     🎨 Change Background Color
@@ -69,9 +62,7 @@
             </div>
         </div>
 
-
         <div class="row g-4 mb-5">
-
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
                     <img src="images/astana.jpg" class="card-img-top object-fit-cover" height="220" alt="Astana">
@@ -88,7 +79,6 @@
                 </div>
             </div>
 
-
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
                     <img src="images/almaty.jpg" class="card-img-top object-fit-cover" height="220" alt="Almaty">
@@ -104,7 +94,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
@@ -123,41 +112,30 @@
             </div>
         </div>
 
+        <div class="card p-4 shadow-sm border-0 rounded-4 mt-4">
+            <h5 class="fw-bold mb-3">Booking & Flight FAQs</h5>
 
-        <div class="card p-4 shadow-sm border-0 rounded-4 mx-auto style-container" style="max-width: 800px;">
-            <h4 class="fw-bold mb-4 text-center">Destination Highlights & Seasons</h4>
-
-            <div class="accordion-item mb-3 border-bottom pb-2">
-                <button class="accordion-btn btn w-100 text-start fw-bold fs-6 d-flex justify-content-between align-items-center p-2">
-                    Best Time to Visit Astana <span>+</span>
+            <div class="accordion-item mb-2 border-bottom pb-2">
+                <button type="button" class="accordion-btn btn w-100 text-start fw-bold small d-flex justify-content-between align-items-center p-2">
+                    Can I bring extra baggage on Flyora flights? <span>+</span>
                 </button>
-                <div class="accordion-content p-2 text-muted small" style="display: none;">
-                    The ideal season to visit Astana is from May to September when temperatures are warm and mild, perfect for exploring Nur Alem, Khan Shatyr, and Bayterek.
-                </div>
-            </div>
-
-            <div class="accordion-item mb-3 border-bottom pb-2">
-                <button class="accordion-btn btn w-100 text-start fw-bold fs-6 d-flex justify-content-between align-items-center p-2">
-                    What to Do in Almaty <span>+</span>
-                </button>
-                <div class="accordion-content p-2 text-muted small" style="display: none;">
-                    In winter, visit Shymbulak Ski Resort and Medeu. In summer, enjoy hiking near Big Almaty Lake, Kok-Tobe, and Charyn Canyon.
+                <div class="accordion-content p-2 text-muted small">
+                    Yes, additional baggage can be added during your checkout or reservation process at standard airline rates.
                 </div>
             </div>
 
             <div class="accordion-item">
-                <button class="accordion-btn btn w-100 text-start fw-bold fs-6 d-flex justify-content-between align-items-center p-2">
-                    Travel Tips for Dubai <span>+</span>
+                <button type="button" class="accordion-btn btn w-100 text-start fw-bold small d-flex justify-content-between align-items-center p-2">
+                    Are flight changes free of charge? <span>+</span>
                 </button>
-                <div class="accordion-content p-2 text-muted small" style="display: none;">
-                    Best months are October through April. Don't miss Burj Khalifa, Dubai Marina, Palm Jumeirah, and desert safari experiences.
+                <div class="accordion-content p-2 text-muted small">
+                    Date and time changes depend on your fare tier. Flexible tickets include free changes up to 3 hours before departure.
                 </div>
             </div>
         </div>
 
     </div>
 </main>
-
 
 <div id="popupModal" class="modal" tabindex="-1" style="display: none; background: rgba(0,0,0,0.5); position: fixed; top:0; left:0; width:100%; height:100%; z-index: 1050;">
     <div class="modal-dialog modal-dialog-centered">
@@ -177,8 +155,7 @@
     </div>
 </div>
 
-
-<footer class="custom-footer py-4 mt-auto text-white">
+<footer class="custom-footer py-4 mt-auto text-white" style="background-color: #1a0f1c;">
     <div class="container text-center">
         <p class="mb-1 small opacity-90">
             <span>Developed by Team:</span>
@@ -190,7 +167,6 @@
         <p class="mb-0 extra-small text-white-50" style="font-size: 0.8rem;">© 2026 Flyora Travel Inc. All rights reserved.</p>
     </div>
 </footer>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
