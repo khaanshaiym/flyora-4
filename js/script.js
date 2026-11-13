@@ -1,216 +1,203 @@
-$(document).ready(function () {
-    console.log("Assignment 6 jQuery script loaded successfully!");
-
-
-    if ($('#scroll-progress').length === 0) {
-        $('body').prepend('<div id="scroll-progress" style="position:fixed; top:0; left:0; height:5px; background:linear-gradient(90deg, #3b173d, #d8b47c); width:0%; z-index:9999; transition: width 0.05s ease;"></div>');
-    }
-
-    $(window).on('scroll', function () {
-        const sTop = $(window).scrollTop();
-        const dHeight = $(document).height() - $(window).height();
-        const progress = dHeight > 0 ? (sTop / dHeight) * 100 : 0;
-        $('#scroll-progress').css('width', progress + '%');
-    });
-
-
-    let counted = false;
-    $(window).on('scroll', function () {
-        const $statsSection = $('#stats-section');
-        if ($statsSection.length && !counted) {
-            const oTop = $statsSection.offset().top - window.innerHeight;
-            if ($(window).scrollTop() > oTop) {
-                $('.counter').each(function () {
-                    const $this = $(this);
-                    const countTo = parseInt($this.attr('data-count')) || 100;
-                    $({ countNum: 0 }).animate({
-                        countNum: countTo
-                    }, {
-                        duration: 2000,
-                        easing: 'swing',
-                        step: function () {
-                            $this.text(Math.floor(this.countNum));
-                        },
-                        complete: function () {
-                            $this.text(this.countNum + "+");
-                        }
-                    });
-                });
-                counted = true;
-            }
-        }
-    });
-
-
-    $('form').on('submit', function (e) {
-        const $btn = $(this).find('button[type="submit"]');
-        if ($btn.length && !$btn.hasClass('loading')) {
-            const originalText = $btn.html();
-            $btn.addClass('loading').prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Please wait...');
-
-            setTimeout(() => {
-                $btn.removeClass('loading').prop('disabled', false).html(originalText);
-                if (window.showToast) {
-                    window.showToast("Action completed successfully!");
-                }
-            }, 2000);
-        }
-    });
-
-
-    window.showToast = function (message) {
-        const $toast = $(`
-            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
-                <div class="toast show align-items-center text-white bg-dark border-0 shadow-lg" role="alert">
-                    <div class="d-flex">
-                        <div class="toast-body fw-semibold">✨ ${message}</div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-                    </div>
-                </div>
-            </div>
-        `).appendTo('body');
-
-        setTimeout(() => {
-            $toast.fadeOut(500, function () {
-                $(this).remove();
-            });
-        }, 3000);
-    };
-
-
-    $(document).on('click', '.copy-btn', function () {
-        const textToCopy = $(this).attr('data-clipboard-text') || "FLYORA2026";
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            const $btn = $(this);
-            const originalHTML = $btn.html();
-            $btn.html('✓ Copied to clipboard!');
-            if (window.showToast) {
-                window.showToast("Promocode copied successfully!");
-            }
-            setTimeout(() => {
-                $btn.html(originalHTML);
-            }, 2000);
-        });
-    });
-
-
-    $(window).on('scroll load', function () {
-        $('img[data-src]').each(function () {
-            const $img = $(this);
-            if ($img.offset().top < $(window).scrollTop() + $(window).height() + 300) {
-                if (!$img.attr('src')) {
-                    $img.attr('src', $img.attr('data-src'));
-                }
-            }
-        });
-    });
-
-
-    const suggestions = ["Astana", "Almaty", "Dubai", "Istanbul", "London", "Antalya", "Tashkent"];
-    $('#liveSearchInput').on('input', function () {
-        const val = $(this).val().toLowerCase();
-        let $dropdown = $('#autocomplete-list');
-
-        if ($dropdown.length === 0) {
-            $dropdown = $('<div id="autocomplete-list" class="position-absolute bg-white shadow rounded-3 w-100 mt-1 overflow-hidden" style="z-index: 1000;"></div>');
-            $(this).parent().css('position', 'relative').append($dropdown);
-        }
-
-        $dropdown.empty();
-        if (!val) return;
-
-        const matches = suggestions.filter(item => item.toLowerCase().includes(val));
-        matches.forEach(match => {
-            $dropdown.append(`<div class="p-2 border-bottom suggestion-item" style="cursor: pointer; color: #000;">${match}</div>`);
-        });
-
-        $('.suggestion-item').on('click', function () {
-            $('#liveSearchInput').val($(this).text()).trigger('keyup');
-            $dropdown.empty();
-        });
-    });
-
-
-    $('#highlightSearchBtn').on('click', function () {
-        const keyword = $('#highlightInput').val().trim();
-
-        $('mark.search-highlight').each(function () {
-            $(this).replaceWith($(this).text());
-        });
-
-        if (!keyword) return;
-
-        let foundCount = 0;
-        $('main p, main h1, main h2, main h3, main h4, main h5, main h6, .card').each(function () {
-            const $el = $(this);
-            const html = $el.html();
-
-            const regex = new RegExp(`(${keyword})`, 'gi');
-            if (regex.test(html)) {
-                const newHtml = html.replace(regex, '<mark class="search-highlight bg-warning text-dark px-1 rounded">$1</mark>');
-                $el.html(newHtml);
-                foundCount++;
-            }
-        });
-
-        if (window.showToast) {
-            window.showToast(`Highlighted matches found: ${foundCount}`);
-        }
-    });
-
-});
-
-
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("Flyora script initialized successfully!");
 
+    document.addEventListener("keydown", function (e) {
 
-    function playNotificationSound() {
-        try {
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            const audioCtx = new AudioContext();
-
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = "sine";
-            osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
-
-            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.2);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.2);
-        } catch (e) {
-            console.log("Audio Context blocked:", e);
+        if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
+            return;
         }
+
+
+        const navLinks = Array.from(document.querySelectorAll(".navbar-nav .nav-link"));
+        if (navLinks.length === 0) return;
+
+
+        let currentIndex = navLinks.findIndex(link => link.classList.contains("active"));
+        if (currentIndex === -1) currentIndex = 0;
+
+        if (e.key === "ArrowRight") {
+            e.preventDefault();
+            // Переходим к следующей вкладке (с цикличным возвратом к началу)
+            currentIndex = (currentIndex + 1) % navLinks.length;
+            window.location.href = navLinks[currentIndex].href;
+        } else if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            // Переходим к предыдущей вкладке
+            currentIndex = (currentIndex - 1 + navLinks.length) % navLinks.length;
+            window.location.href = navLinks[currentIndex].href;
+        }
+    });
+    const changeBgBtn = document.getElementById("changeBgBtn");
+
+
+    const savedBgColor = localStorage.getItem("customBgColor");
+    if (savedBgColor && !document.body.classList.contains("dark-theme")) {
+        document.body.style.backgroundColor = savedBgColor;
     }
 
-    document.querySelectorAll("button, .btn, a").forEach(element => {
-        element.addEventListener("click", playNotificationSound);
-    });
+    if (changeBgBtn) {
+        const bgColors = ["#faf7f5", "#f0e6f2", "#e2d5e5", "#fcf4d9", "#e3f2fd", "#e8f5e9"];
+        let colorIndex = 0;
+
+        changeBgBtn.addEventListener("click", function () {
+            if (!document.body.classList.contains("dark-theme")) {
+                colorIndex = (colorIndex + 1) % bgColors.length;
+                const newColor = bgColors[colorIndex];
 
 
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-theme");
+                document.body.style.backgroundColor = newColor;
+                localStorage.setItem("customBgColor", newColor);
+
+                if (window.showToast) window.showToast("Background color changed & saved!");
+            } else {
+                if (window.showToast) window.showToast("Switch to light theme to change custom colors!");
+            }
+        });
     }
 
     const toggleBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-theme");
+        if (toggleBtn) toggleBtn.textContent = "Light Theme";
+    } else {
+        document.body.classList.remove("dark-theme");
+        if (toggleBtn) toggleBtn.textContent = "Toggle Theme";
+    }
+
     if (toggleBtn) {
         toggleBtn.addEventListener("click", function () {
             document.body.classList.toggle("dark-theme");
             const isDark = document.body.classList.contains("dark-theme");
             localStorage.setItem("theme", isDark ? "dark" : "light");
-            toggleBtn.textContent = isDark ? "☀️ Light Theme" : "🌙 Dark Theme";
+            toggleBtn.textContent = isDark ? "Light Theme" : "Toggle Theme";
+
+
+            if (isDark) {
+                document.body.style.backgroundColor = "";
+            } else {
+                const savedBgColor = localStorage.getItem("customBgColor");
+                if (savedBgColor) document.body.style.backgroundColor = savedBgColor;
+            }
         });
     }
 
+
+    const clockEl = document.getElementById("liveClock");
+    if (clockEl) {
+        setInterval(() => {
+            const now = new Date();
+            clockEl.textContent = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+        }, 1000);
+    }
+
+    const accButtons = document.querySelectorAll(".accordion-btn");
+    accButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const content = this.nextElementSibling;
+            if (content) {
+                content.classList.toggle("open");
+                const spanIcon = this.querySelector("span");
+                if (spanIcon) spanIcon.textContent = content.classList.contains("open") ? "−" : "+";
+            }
+        });
+    });
+
+    const readMoreBtn = document.getElementById("readMoreBtn");
+    const moreGuidanceText = document.getElementById("moreGuidanceText");
+    if (readMoreBtn && moreGuidanceText) {
+        readMoreBtn.addEventListener("click", function () {
+            if (moreGuidanceText.style.display === "none" || !moreGuidanceText.style.display) {
+                moreGuidanceText.style.display = "inline";
+                readMoreBtn.textContent = "Read Less";
+            } else {
+                moreGuidanceText.style.display = "none";
+                readMoreBtn.textContent = "Read More";
+            }
+        });
+    }
+
+    const stars = document.querySelectorAll(".rating-star");
+    const ratingText = document.getElementById("ratingValueText");
+    stars.forEach((star, index) => {
+        star.addEventListener("click", () => {
+            const val = index + 1;
+            stars.forEach((s, i) => { s.style.color = i < val ? "#ffc107" : "#ccc"; });
+            if (ratingText) ratingText.textContent = `You rated us ${val} out of 5 stars! Thank you!`;
+            if (window.showToast) window.showToast(`Thank you for your ${val}-star rating!`);
+        });
+    });
+
+
+    const openPopupBtn = document.getElementById("openPopupBtn");
+    const closePopupBtn = document.getElementById("closePopupBtn");
+    const popupModal = document.getElementById("popupModal");
+
+    if (openPopupBtn && popupModal) openPopupBtn.addEventListener("click", () => { popupModal.style.display = "block"; });
+    if (closePopupBtn && popupModal) closePopupBtn.addEventListener("click", () => { popupModal.style.display = "none"; });
+
+
+    const copyBtn = document.querySelector(".copy-btn");
+    if (copyBtn) {
+        copyBtn.addEventListener("click", function () {
+            const textToCopy = this.getAttribute("data-clipboard-text") || "FLYORA2026";
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalHTML = this.innerHTML;
+                this.innerHTML = "✓ Copied to clipboard!";
+                if (window.showToast) {
+                    window.showToast("Promocode copied successfully!");
+                } else {
+                    alert("Promocode copied successfully!");
+                }
+                setTimeout(() => { this.innerHTML = originalHTML; }, 2000);
+            });
+        });
+    }
+
+
+    const flightSearchForm = document.getElementById("flightSearchForm");
+    if (flightSearchForm) {
+        flightSearchForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const selects = this.querySelectorAll("select");
+            const fromVal = selects[0] ? selects[0].value : "";
+            const toVal = selects[1] ? selects[1].value : "";
+
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Searching...';
+
+                setTimeout(() => {
+                    const searchParams = new URLSearchParams();
+                    if (fromVal) searchParams.append("from", fromVal);
+                    if (toVal) searchParams.append("to", toVal);
+                    window.location.href = `flights.html?${searchParams.toString()}`;
+                }, 1000);
+            }
+        });
+    }
+
+
+    document.querySelectorAll("form").forEach(form => {
+        if (form.id === "flightSearchForm") return;
+        form.addEventListener("submit", function (e) {
+            const btn = this.querySelector('button[type="submit"]');
+            if (btn && !btn.classList.contains("loading")) {
+                e.preventDefault();
+                const originalText = btn.innerHTML;
+                btn.classList.add("loading");
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Please wait...';
+
+                setTimeout(() => {
+                    btn.classList.remove("loading");
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                    if (window.showToast) window.showToast("Action completed successfully!");
+                }, 1500);
+            }
+        });
+    });
 
     const flightsData = [
         { id: 1, airline: "Flyora Air", from: "Astana (NQZ)", to: "Almaty (ALA)", price: 32900, type: "direct", duration: "1h 35m" },
@@ -223,11 +210,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const flightsContainer = document.querySelector("#flightsContainer");
-    let currentFilter = "all";
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlFrom = urlParams.get("from") ? urlParams.get("from").toLowerCase() : "";
+    const urlTo = urlParams.get("to") ? urlParams.get("to").toLowerCase() : "";
 
-    function renderFlights(filterType = "all") {
+    window.renderFlights = function(filterType = "all") {
         if (!flightsContainer) return;
-        currentFilter = filterType;
 
         const searchInput = document.querySelector("#liveSearchInput");
         const searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : "";
@@ -243,6 +231,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const text = `${flight.airline} ${flight.from} ${flight.to} ${flight.type} ${flight.price}`.toLowerCase();
                 return text.includes(searchQuery);
             });
+        } else if (urlFrom || urlTo) {
+            filtered = filtered.filter(flight => {
+                const matchFrom = urlFrom ? flight.from.toLowerCase().includes(urlFrom) : true;
+                const matchTo = urlTo ? flight.to.toLowerCase().includes(urlTo) : true;
+                return matchFrom && matchTo;
+            });
         }
 
         if (filtered.length === 0) {
@@ -251,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         flightsContainer.innerHTML = filtered.map(flight => `
-            <div class="card p-4 shadow-sm border-0 rounded-4 d-flex flex-row align-items-center justify-content-between mb-3 animate-fade">
+            <div class="card p-4 shadow-sm border-0 rounded-4 d-flex flex-row align-items-center justify-content-between mb-3">
                 <div>
                     <h6 class="fw-bold mb-1">${flight.airline}</h6>
                     <p class="text-muted small mb-0">${flight.from} → ${flight.to}</p>
@@ -269,263 +263,145 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.querySelectorAll(".dynamic-select-btn").forEach(btn => {
             btn.addEventListener("click", () => {
-                if (window.showToast) {
-                    window.showToast("Flight selected successfully!");
-                } else {
-                    alert("Flight successfully chosen!");
-                }
+                if (window.showToast) window.showToast("Flight selected successfully!");
             });
         });
     }
 
-    window.renderFlights = renderFlights;
-    renderFlights("all");
-
+    if (flightsContainer) renderFlights("all");
 
     const liveSearchInput = document.querySelector("#liveSearchInput");
     if (liveSearchInput) {
-        liveSearchInput.addEventListener("keyup", function () {
-            renderFlights(currentFilter);
-        });
+        liveSearchInput.addEventListener("keyup", () => renderFlights("all"));
     }
-
-
-    const navLinks = Array.from(document.querySelectorAll(".navbar-nav .nav-link, .navbar-nav button, .btn-explore, .navbar-brand"));
-    let currentIndex = navLinks.findIndex(el => el.classList.contains("active")) || 0;
-    if (currentIndex < 0) currentIndex = 0;
-
-    if (navLinks.length > 0) {
-        window.addEventListener("keydown", (e) => {
-            if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-                e.preventDefault();
-                currentIndex = (currentIndex + 1) % navLinks.length;
-                navLinks[currentIndex].focus();
-            } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-                e.preventDefault();
-                currentIndex = (currentIndex - 1 + navLinks.length) % navLinks.length;
-                navLinks[currentIndex].focus();
-            } else if (e.key === "Enter") {
-                const activeEl = document.activeElement;
-                if (activeEl && (activeEl.tagName === 'A' || activeEl.tagName === 'BUTTON')) {
-                    const href = activeEl.getAttribute("href");
-                    if (href) {
-                        window.location.href = href;
-                    } else {
-                        activeEl.click();
-                    }
-                }
-            }
-        });
-    }
-
-
-    const readMoreBtn = document.getElementById("readMoreBtn");
-    const moreGuidanceText = document.getElementById("moreGuidanceText");
-
-    if (readMoreBtn && moreGuidanceText) {
-        readMoreBtn.addEventListener("click", function () {
-            if (moreGuidanceText.style.display === "none" || moreGuidanceText.style.display === "") {
-                moreGuidanceText.style.display = "inline";
-                readMoreBtn.innerText = "Read Less";
-            } else {
-                moreGuidanceText.style.display = "none";
-                readMoreBtn.innerText = "Read More";
-            }
-        });
-    }
-
-
-    const stars = document.querySelectorAll(".rating-star");
-    const ratingValueText = document.getElementById("ratingValueText");
-
-    stars.forEach(star => {
-        star.addEventListener("click", function () {
-            const val = parseInt(this.getAttribute("data-value"));
-            stars.forEach((s, idx) => {
-                if (idx < val) {
-                    s.style.color = "#ffc107";
-                    s.classList.add("fw-bold");
-                } else {
-                    s.style.color = "#ccc";
-                    s.classList.remove("fw-bold");
-                }
-            });
-            if (ratingValueText) {
-                ratingValueText.innerText = `You rated this service ${val} out of 5 stars. Thank you!`;
-            }
-            if (window.showToast) {
-                window.showToast(`Rating submitted: ${val} stars!`);
-            }
-        });
-    });
-
-
-    let currentStep = 1;
-
-    function showStep(step) {
-        const steps = document.querySelectorAll(".form-step");
-        steps.forEach((s, index) => {
-            if (index + 1 === step) {
-                s.classList.remove("d-none");
-            } else {
-                s.classList.add("d-none");
-            }
-        });
-
-        for (let i = 1; i <= 3; i++) {
-            const indicator = document.getElementById(`step${i}-indicator`);
-            if (indicator) {
-                indicator.className = (i === step) ? "badge bg-dark rounded-circle p-2" : "badge bg-secondary rounded-circle p-2";
-            }
-        }
-    }
-
-    document.querySelectorAll(".next-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (currentStep < 3) {
-                currentStep++;
-                showStep(currentStep);
-            }
-        });
-    });
-
-    document.querySelectorAll(".prev-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (currentStep > 1) {
-                currentStep--;
-                showStep(currentStep);
-            }
-        });
-    });
-
-    const multiStepForm = document.getElementById("multiStepForm");
-    if (multiStepForm) {
-        multiStepForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            if (window.showToast) {
-                window.showToast("Multi-step booking submitted!");
-            } else {
-                alert("Reservation completed!");
-            }
-            currentStep = 1;
-            showStep(currentStep);
-            multiStepForm.reset();
-        });
-    }
-
-
-    const contactForm = document.querySelector("#contactForm");
-    if (contactForm) {
-        contactForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const emailInput = document.querySelector("#email");
-            const passInput = document.querySelector("#password");
-            const errorMsg = document.querySelector("#errorMsg");
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (emailInput && !emailRegex.test(emailInput.value)) {
-                if (errorMsg) errorMsg.innerText = "Please enter a valid email address.";
-                return;
-            }
-            if (passInput) {
-                const passValue = passInput.value;
-                if (!passValue || passValue.trim() === "" || passValue.length < 6) {
-                    if (errorMsg) errorMsg.innerText = "Password must be at least 6 characters long.";
-                    return;
-                }
-            }
-
-            if (errorMsg) errorMsg.innerText = "";
-            if (window.showToast) {
-                window.showToast("Form submitted successfully!");
-            } else {
-                alert("Submitted successfully!");
-            }
-            contactForm.reset();
-        });
-    }
-
-
-
-    const accButtons = document.querySelectorAll(".accordion-btn");
-    accButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const content = this.nextElementSibling;
-            if (content) {
-                // Закрываем другие открытые пункты FAQ для чистоты (необязательно, но смотрится отлично)
-                document.querySelectorAll(".accordion-content").forEach(item => {
-                    if (item !== content) {
-                        item.classList.remove("open");
-                        const prevBtn = item.previousElementSibling;
-                        if (prevBtn) {
-                            const icon = prevBtn.querySelector("span");
-                            if (icon) icon.textContent = "+";
-                        }
-                    }
-                });
-
-                content.classList.toggle("open");
-                const spanIcon = this.querySelector("span");
-                if (spanIcon) {
-                    spanIcon.textContent = content.classList.contains("open") ? "−" : "+";
-                }
-            }
-        });
-    });
-
-
-    const popupModal = document.getElementById("popupModal");
-    const openPopupBtn = document.getElementById("openPopupBtn");
-    const closePopupBtn = document.getElementById("closePopupBtn");
-
-    if (openPopupBtn && popupModal) {
-        openPopupBtn.addEventListener("click", () => {
-            popupModal.style.display = "block";
-        });
-    }
-
-    if (closePopupBtn && popupModal) {
-        closePopupBtn.addEventListener("click", () => {
-            popupModal.style.display = "none";
-        });
-    }
-
-    window.addEventListener("click", (e) => {
-        if (popupModal && e.target === popupModal) {
-            popupModal.style.display = "none";
-        }
-    });
-
-
-    const bgColors = ["#faf7f5", "#e3f2fd", "#e8f5e9", "#fff3e0", "#f3e5f5"];
-    let colorIdx = 0;
-    const colorBtn = document.getElementById("changeBgBtn");
-
-    if (colorBtn) {
-        colorBtn.addEventListener("click", () => {
-            colorIdx = (colorIdx + 1) % bgColors.length;
-            document.body.style.backgroundColor = bgColors[colorIdx];
-        });
-    }
-
-    function updateLiveClock() {
-        const clockEl = document.getElementById("liveClock");
-        if (clockEl) {
-            const now = new Date();
-            const options = {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-                hour: 'numeric',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            };
-            clockEl.innerText = now.toLocaleDateString('en-US', options);
-        }
-    }
-
-    setInterval(updateLiveClock, 1000);
-    updateLiveClock();
 });
+
+// ==========================================
+// 11. JQUERY ФУНКЦИИ (ПРОГРЕСС СКРОЛЛА, СЧЕТЧИКИ, TOAST)
+// ==========================================
+function runJQueryFeatures() {
+    if (typeof jQuery === "undefined") {
+        setTimeout(runJQueryFeatures, 100);
+        return;
+    }
+
+    $(document).ready(function () {
+        // Прогресс скролла
+        if ($('#scroll-progress').length === 0) {
+            $('body').prepend('<div id="scroll-progress" style="position:fixed; top:0; left:0; height:5px; background:linear-gradient(90deg, #3b173d, #d8b47c); width:0%; z-index:9999;"></div>');
+        }
+        $(window).on('scroll', function () {
+            const sTop = $(window).scrollTop();
+            const dHeight = $(document).height() - $(window).height();
+            const progress = dHeight > 0 ? (sTop / dHeight) * 100 : 0;
+            $('#scroll-progress').css('width', progress + '%');
+        });
+
+        // Анимация счетчиков (с исправленной формулой)
+        let counted = false;
+        $(window).on('scroll', function () {
+            const $statsSection = $('#stats-section');
+            if ($statsSection.length && !counted) {
+                const oTop = $statsSection.offset().top - window.innerHeight;
+                if ($(window).scrollTop() > oTop) {
+                    $('.counter').each(function () {
+                        const $this = $(this);
+                        const countTo = parseInt($this.attr('data-count')) || 100;
+                        $({ countNum: 0 }).animate({ countNum: countTo }, {
+                            duration: 2000,
+                            easing: 'swing',
+                            step: function () { $this.text(Math.floor(this.countNum)); },
+                            complete: function () { $this.text(this.countNum + "+"); }
+                        });
+                    });
+                    counted = true;
+                }
+            }
+        });
+
+        // Toast уведомления
+        window.showToast = function (message) {
+            const $toast = $(`
+                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+                    <div class="toast show align-items-center bg-dark border-0 shadow-lg" role="alert">
+                        <div class="d-flex">
+                            <div class="toast-body fw-semibold">✨ ${message}</div>
+                            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+                        </div>
+                    </div>
+                </div>
+            `).appendTo('body');
+            setTimeout(() => { $toast.fadeOut(500, function () { $(this).remove(); }); }, 3000);
+        };
+    });
+}
+// ==========================================
+// 12. TASK 3: SEARCH HIGHLIGHTING (ПОДСВЕТКА ПОИСКА)
+// ==========================================
+// Создаем поле поиска для подсветки, если его нет, или ищем существующий input
+const highlightInput = document.querySelector("#highlightInput");
+const highlightBtn = document.querySelector("#highlightSearchBtn");
+
+if (highlightInput && highlightBtn) {
+    highlightBtn.addEventListener("click", function () {
+        const keyword = highlightInput.value.trim();
+
+        // Сначала убираем старую подсветку
+        removeHighlights();
+
+        if (!keyword) return;
+
+        // Ищем совпадения в текстовых узлах и оборачиваем в тег <mark>
+        highlightTextInElement(document.body, keyword);
+    });
+}
+
+function highlightTextInElement(element, keyword) {
+    const regex = new RegExp(`(${keyword})`, "gi");
+
+    // Рекурсивно обходим дочерние элементы страницы (исключая скрипты, стили и саму панель поиска)
+    $(element).find(":not(script, style, noscript, header, nav)").contents().each(function() {
+        if (this.nodeType === 3) { // Текстовый узел
+            let text = this.nodeValue;
+            if (regex.test(text)) {
+                let newHtml = text.replace(regex, '<mark class="search-highlight">$1</mark>');
+                let $wrapper = $("<span>").html(newHtml);
+                $(this).replaceWith($wrapper);
+            }
+        }
+    });
+}
+
+function removeHighlights() {
+    $("mark.search-highlight").each(function () {
+        let parent = this.parentNode;
+        parent.replaceChild(document.createTextNode(this.textContent), this);
+        parent.normalize();
+    });
+}
+
+// ==========================================
+// 13. TASK 9: IMAGE LAZY LOADING
+// ==========================================
+function checkLazyImages() {
+    const $lazyImages = $("img[data-src]");
+    const windowHeight = $(window).height();
+    const scrollTop = $(window).scrollTop();
+
+    $lazyImages.each(function () {
+        const $img = $(this);
+        // Если картинка приближается к области видимости (с запасом в 300px)
+        if ($img.offset().top < scrollTop + windowHeight + 300) {
+            if (!$img.attr('src')) {
+                $img.attr('src', $img.attr('data-src'));
+                $img.hide().fadeIn(600); // Плавное появление при загрузке
+            }
+        }
+    });
+}
+
+// Запускаем при скролле и при загрузке страницы
+$(window).on("scroll load", checkLazyImages);
+// Первичный вызов на случай, если картинки уже в зоне видимости
+checkLazyImages();
+runJQueryFeatures();

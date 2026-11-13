@@ -6,10 +6,6 @@
     <title>Flyora - Contact</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-
-
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-    <script src="js/script.js"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -20,11 +16,9 @@
                 <span class="logo-icon">✦</span>
                 <span class="logo-text fw-bold">Flyora</span>
             </a>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav ms-auto me-3 align-items-center gap-3">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -34,7 +28,7 @@
                 </ul>
                 <div class="d-flex align-items-center gap-2">
                     <button id="theme-toggle" class="btn btn-outline-secondary btn-sm">Toggle Theme</button>
-                    <a href="destinations.html" class="btn btn-dark rounded-pill px-3 py-2 btn-sm">Explore →</a>
+                    <a href="contact.html" class="btn btn-explore">Explore →</a>
                 </div>
             </div>
         </nav>
@@ -43,7 +37,6 @@
 
 <main class="py-5 flex-grow-1">
     <div class="container" style="max-width: 750px;">
-
         <div class="text-center mb-3">
             <span class="badge bg-dark px-3 py-2 fs-6 rounded-pill">
                 🕒 <span id="liveClock">Loading date & time...</span>
@@ -54,22 +47,18 @@
             <span class="text-uppercase tracking-widest text-muted small fw-semibold">Get in Touch</span>
             <h1 class="display-5 fw-bold mt-2 mb-2" style="font-family: serif;">Contact Us</h1>
             <p class="text-muted">Have questions? We are here to help you plan your next travel.</p>
-
-            <div class="d-flex justify-content-center gap-2 mt-3">
-                <button id="changeBgBtn" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
-                    🎨 Change Background Color
-                </button>
-                <button id="openPopupBtn" class="btn btn-outline-primary btn-sm rounded-pill px-3">
-                    ✉️ Subscribe Newsletter
-                </button>
-            </div>
         </div>
-
+        <div class="d-flex justify-content-center gap-2 mt-3">
+            <button id="changeBgBtn" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                🎨 Change Background Color
+            </button>
+            <button id="openPopupBtn" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                ✉️ Subscribe for Deals
+            </button>
+        </div>
         <div class="card p-4 shadow-sm border-0 rounded-4 mb-5">
             <h5 class="fw-bold mb-3">Send us a Message</h5>
             <form id="contactForm" novalidate>
-                <div id="errorMsg" class="text-danger small mb-3 fw-bold"></div>
-
                 <div class="mb-3">
                     <label class="form-label fw-medium small" for="name">Your Name</label>
                     <input type="text" id="name" class="form-control form-control-lg border-0 bg-light" placeholder="Enter your full name" required>
@@ -77,14 +66,6 @@
                 <div class="mb-3">
                     <label class="form-label fw-medium small" for="email">Email Address</label>
                     <input type="email" id="email" class="form-control form-control-lg border-0 bg-light" placeholder="name@example.com" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label fw-medium small" for="password">Account Password / Verification</label>
-                    <input type="password" id="password" class="form-control form-control-lg border-0 bg-light" placeholder="Minimum 6 characters" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label fw-medium small" for="subject">Subject</label>
-                    <input type="text" id="subject" class="form-control form-control-lg border-0 bg-light" placeholder="Flight inquiry, booking, etc.">
                 </div>
                 <div class="mb-4">
                     <label class="form-label fw-medium small" for="message">Message</label>
@@ -114,39 +95,11 @@
                     Date and time changes depend on your fare tier. Flexible tickets include free changes up to 3 hours before departure.
                 </div>
             </div>
-
-            <div class="accordion-item">
-                <button type="button" class="accordion-btn btn w-100 text-start fw-bold small d-flex justify-content-between align-items-center p-2">
-                    How can I change my flight dates? <span>+</span>
-                </button>
-                <div class="accordion-content p-2 text-muted small">
-                    Flight date changes can be performed under the "Flights" page or by filling out our contact form above with your booking reference.
-                </div>
-            </div>
         </div>
-
     </div>
 </main>
 
-<div id="popupModal" class="modal" tabindex="-1" style="display: none; background: rgba(0,0,0,0.5); position: fixed; top:0; left:0; width:100%; height:100%; z-index: 1050;">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content p-4 rounded-4 shadow">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="modal-title fw-bold">Subscribe to Flyora Newsletter</h5>
-                <button type="button" id="closePopupBtn" class="btn-close" aria-label="Close"></button>
-            </div>
-            <p class="text-muted small">Get exclusive travel discounts and flight updates straight to your inbox.</p>
-            <form id="popupForm" onsubmit="event.preventDefault(); if(window.showToast) window.showToast('Subscribed successfully!'); document.getElementById('popupModal').style.display='none';">
-                <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Enter your email" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100 rounded-pill">Subscribe Now</button>
-            </form>
-        </div>
-    </div>
-</div>
-
-<footer class="custom-footer py-4 mt-auto text-white" style="background-color: #1a0f1c;">
+<footer class="custom-footer py-4 mt-auto text-white">
     <div class="container text-center">
         <p class="footer-team mb-1">
             <span>Developed by Team:</span>
@@ -155,11 +108,12 @@
             <span>Group:</span>
             <strong>SE-2503</strong>
         </p>
-        <p class="mb-0 extra-small text-white-50" style="font-size: 0.8rem;">© 2026 Flyora Travel Inc. All rights reserved.</p>
+        <p class="mb-0 extra-small text-white-50" style="font-size: 0.8rem;">©️ 2026 Flyora Travel Inc. All rights reserved.</p>
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+css
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 
 html {
@@ -18,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #3b173d;
 }
 
-
+/* --- ТЕМНАЯ ТЕМА --- */
 body.dark-theme {
     background-color: #120b13 !important;
     color: #f8f3f9 !important;
@@ -31,7 +33,7 @@ body.dark-theme h4,
 body.dark-theme h5,
 body.dark-theme h6,
 body.dark-theme p,
-body.dark-theme span,
+body.dark-theme span:not(.navbar-toggler-icon),
 body.dark-theme label,
 body.dark-theme small,
 body.dark-theme strong,
@@ -45,14 +47,16 @@ body.dark-theme .text-muted {
 
 body.dark-theme .card,
 body.dark-theme .search-card,
+body.dark-theme .flight-search-box,
+body.dark-theme #stats-section,
 body.dark-theme .modal-content {
     background-color: #1e1321 !important;
     color: #f8f3f9 !important;
     border: 1px solid #3d2942 !important;
 }
 
-body.dark-theme .btn,
-body.dark-theme button,
+body.dark-theme .btn:not(#theme-toggle):not(.btn-explore),
+body.dark-theme button:not(#theme-toggle):not(.btn-explore),
 body.dark-theme .btn-outline-dark,
 body.dark-theme .btn-outline-secondary {
     color: #f0e6f2 !important;
@@ -60,18 +64,44 @@ body.dark-theme .btn-outline-secondary {
     background-color: transparent !important;
 }
 
+body.dark-theme #theme-toggle {
+    background-color: #2a1b2e !important;
+    color: #f0e6f2 !important;
+    border-color: #4a2d52 !important;
+}
+
+/* Кнопка Explore */
+#explore-btn, .btn-explore, .navbar .btn-explore {
+    background: linear-gradient(135deg, #3b173d, #d8b47c) !important;
+    border: none !important;
+    color: #ffffff !important;
+    border-radius: 50rem !important;
+    padding: 0.5rem 1.4rem !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+.btn-explore:hover {
+    opacity: 0.9 !important;
+    color: #ffffff !important;
+}
+
 body.dark-theme .btn-dark,
-body.dark-theme .btn-primary {
+body.dark-theme .btn-primary:not(.btn-explore) {
     background-color: #3b173d !important;
     color: #ffffff !important;
     border-color: #4a2d52 !important;
 }
 
-body.dark-theme .btn:hover {
+body.dark-theme .btn:hover:not(#theme-toggle) {
     background-color: #522455 !important;
     color: #ffffff !important;
 }
-
 
 body.dark-theme .form-control,
 body.dark-theme .form-select,
@@ -96,7 +126,6 @@ body.dark-theme .form-control::placeholder {
 .rating-star:hover {
     transform: scale(1.2);
 }
-
 
 .logo a,
 .navbar-brand {
@@ -149,22 +178,11 @@ body.dark-theme .navbar-nav .nav-link.active {
     border-bottom-color: #ffffff !important;
 }
 
-
-.accordion-content {
-    display: none;
-    overflow: hidden;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-}
-
-.accordion-content.open {
-    display: block !important;
-}
-
 footer.custom-footer {
     background-color: #1a0f1c;
     color: #ffffff;
 }
+
 body.dark-theme footer.custom-footer {
     background-color: #0d070e;
 }
@@ -184,14 +202,6 @@ body.dark-theme footer.custom-footer {
     to { transform: rotate(360deg); }
 }
 
-
-mark.search-highlight {
-    background-color: #ffc107 !important;
-    color: #000 !important;
-    padding: 0.1rem 0.3rem;
-    border-radius: 0.25rem;
-}
-
 .accordion-content {
     max-height: 0;
     opacity: 0;
@@ -202,4 +212,38 @@ mark.search-highlight {
 .accordion-content.open {
     max-height: 300px;
     opacity: 1;
+}
+
+main, main.py-5, .container.py-5 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 2rem !important;
+    margin-top: 0 !important;
+}
+/* --- Стили для Toast-уведомлений по умолчанию (Светлая тема) --- */
+.toast {
+    background-color: #ffffff !important; /* Белый фон для светлой темы */
+    color: #221a24 !important;           /* Темный читаемый текст */
+    border: 1px solid #e0d0e2 !important;
+}
+
+.toast .btn-close {
+    filter: none; /* Обычный крестик для светлой темы */
+}
+
+/* --- Контрастные Toast-уведомления для ТЕМНОЙ темы --- */
+body.dark-theme .toast {
+    background-color: #f8f3f9 !important; /* Светлый фон в темной теме */
+    color: #120b13 !important;           /* Темный текст для контраста */
+    border: 1px solid #3d2942 !important;
+}
+
+body.dark-theme .toast .btn-close {
+    filter: brightness(0) saturate(100%); /* Темный крестик в темной теме */
+}
+
+mark.search-highlight {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.25rem;
 }
