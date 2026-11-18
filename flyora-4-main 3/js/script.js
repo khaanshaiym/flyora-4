@@ -1,35 +1,35 @@
+// ==========================================
+// FLYORA MAIN SCRIPT - ALL-IN-ONE
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Flyora script initialized successfully!");
 
+    // 1. Клавиатурная навигация по стрелочкам
     document.addEventListener("keydown", function (e) {
-
         if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
             return;
         }
 
-
         const navLinks = Array.from(document.querySelectorAll(".navbar-nav .nav-link"));
         if (navLinks.length === 0) return;
-
 
         let currentIndex = navLinks.findIndex(link => link.classList.contains("active"));
         if (currentIndex === -1) currentIndex = 0;
 
         if (e.key === "ArrowRight") {
             e.preventDefault();
-            // Переходим к следующей вкладке (с цикличным возвратом к началу)
             currentIndex = (currentIndex + 1) % navLinks.length;
             window.location.href = navLinks[currentIndex].href;
         } else if (e.key === "ArrowLeft") {
             e.preventDefault();
-            // Переходим к предыдущей вкладке
             currentIndex = (currentIndex - 1 + navLinks.length) % navLinks.length;
             window.location.href = navLinks[currentIndex].href;
         }
     });
+
+    // 2. Смена кастомного фона
     const changeBgBtn = document.getElementById("changeBgBtn");
-
-
     const savedBgColor = localStorage.getItem("customBgColor");
     if (savedBgColor && !document.body.classList.contains("dark-theme")) {
         document.body.style.backgroundColor = savedBgColor;
@@ -43,11 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!document.body.classList.contains("dark-theme")) {
                 colorIndex = (colorIndex + 1) % bgColors.length;
                 const newColor = bgColors[colorIndex];
-
-
                 document.body.style.backgroundColor = newColor;
                 localStorage.setItem("customBgColor", newColor);
-
                 if (window.showToast) window.showToast("Background color changed & saved!");
             } else {
                 if (window.showToast) window.showToast("Switch to light theme to change custom colors!");
@@ -55,22 +52,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    const toggleBtn = document.getElementById("theme-toggle");
-    if (localStorage.getItem("theme") === "dark") {
+    // 3. Светлая и темная тема
+    const toggleBtns = document.querySelectorAll(".theme-toggle-btn, #theme-toggle");
+    const isDarkTheme = localStorage.getItem("theme") === "dark";
+
+    if (isDarkTheme) {
         document.body.classList.add("dark-theme");
-        if (toggleBtn) toggleBtn.textContent = "Light Theme";
+        toggleBtns.forEach(btn => btn.textContent = "Light Theme");
     } else {
         document.body.classList.remove("dark-theme");
-        if (toggleBtn) toggleBtn.textContent = "Toggle Theme";
+        toggleBtns.forEach(btn => btn.textContent = "Toggle Theme");
     }
 
-    if (toggleBtn) {
+    toggleBtns.forEach(toggleBtn => {
         toggleBtn.addEventListener("click", function () {
             document.body.classList.toggle("dark-theme");
             const isDark = document.body.classList.contains("dark-theme");
             localStorage.setItem("theme", isDark ? "dark" : "light");
-            toggleBtn.textContent = isDark ? "Light Theme" : "Toggle Theme";
 
+            toggleBtns.forEach(b => b.textContent = isDark ? "Light Theme" : "Toggle Theme");
 
             if (isDark) {
                 document.body.style.backgroundColor = "";
@@ -79,9 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (savedBgColor) document.body.style.backgroundColor = savedBgColor;
             }
         });
-    }
+    });
 
-
+    // 4. Живые часы
     const clockEl = document.getElementById("liveClock");
     if (clockEl) {
         setInterval(() => {
@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 1000);
     }
 
+    // 5. Аккордеоны
     const accButtons = document.querySelectorAll(".accordion-btn");
     accButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -102,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // 6. Кнопка Read More
     const readMoreBtn = document.getElementById("readMoreBtn");
     const moreGuidanceText = document.getElementById("moreGuidanceText");
     if (readMoreBtn && moreGuidanceText) {
@@ -116,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // 7. Рейтинг звездами
     const stars = document.querySelectorAll(".rating-star");
     const ratingText = document.getElementById("ratingValueText");
     stars.forEach((star, index) => {
@@ -127,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-
+    // 8. Модальное окно (Subscribe popup)
     const openPopupBtn = document.getElementById("openPopupBtn");
     const closePopupBtn = document.getElementById("closePopupBtn");
     const popupModal = document.getElementById("popupModal");
@@ -135,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (openPopupBtn && popupModal) openPopupBtn.addEventListener("click", () => { popupModal.style.display = "block"; });
     if (closePopupBtn && popupModal) closePopupBtn.addEventListener("click", () => { popupModal.style.display = "none"; });
 
-
+    // 9. Копирование промокода
     const copyBtn = document.querySelector(".copy-btn");
     if (copyBtn) {
         copyBtn.addEventListener("click", function () {
@@ -153,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
+    // 10. Форма поиска на главной
     const flightSearchForm = document.getElementById("flightSearchForm");
     if (flightSearchForm) {
         flightSearchForm.addEventListener("submit", function (e) {
@@ -177,28 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-    document.querySelectorAll("form").forEach(form => {
-        if (form.id === "flightSearchForm") return;
-        form.addEventListener("submit", function (e) {
-            const btn = this.querySelector('button[type="submit"]');
-            if (btn && !btn.classList.contains("loading")) {
-                e.preventDefault();
-                const originalText = btn.innerHTML;
-                btn.classList.add("loading");
-                btn.disabled = true;
-                btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Please wait...';
-
-                setTimeout(() => {
-                    btn.classList.remove("loading");
-                    btn.disabled = false;
-                    btn.innerHTML = originalText;
-                    if (window.showToast) window.showToast("Action completed successfully!");
-                }, 1500);
-            }
-        });
-    });
-
+    // 11. Рендеринг и фильтрация рейсов
     const flightsData = [
         { id: 1, airline: "Flyora Air", from: "Astana (NQZ)", to: "Almaty (ALA)", price: 32900, type: "direct", duration: "1h 35m" },
         { id: 2, airline: "Air Astana", from: "Almaty (ALA)", to: "Dubai (DXB)", price: 91500, type: "direct", duration: "4h 15m" },
@@ -274,11 +256,253 @@ document.addEventListener("DOMContentLoaded", function () {
     if (liveSearchInput) {
         liveSearchInput.addEventListener("keyup", () => renderFlights("all"));
     }
+
+    // 12. Валидация формы контактов (без HTML атрибутов)
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            let isValid = true;
+
+            const nameEl = document.getElementById("name");
+            const emailEl = document.getElementById("email");
+            const msgEl = document.getElementById("message");
+
+            document.getElementById("contactNameError").textContent = "";
+            document.getElementById("contactEmailError").textContent = "";
+            document.getElementById("contactMessageError").textContent = "";
+
+            if (!nameEl.value.trim()) {
+                document.getElementById("contactNameError").textContent = "Please enter your name.";
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailEl.value.trim() || !emailRegex.test(emailEl.value)) {
+                document.getElementById("contactEmailError").textContent = "Please enter a valid email address.";
+                isValid = false;
+            }
+
+            if (!msgEl.value.trim()) {
+                document.getElementById("contactMessageError").textContent = "Message cannot be empty.";
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                contactForm.reset();
+                if (window.showToast) window.showToast("Message sent successfully!");
+            }, 1000);
+        });
+    }
+
+    // 13. Автоматическая смена кнопки Login / Profile в шапке
+    const navAuthLink = document.getElementById("navAuthLink");
+    if (navAuthLink) {
+        const currentUser = JSON.parse(localStorage.getItem("flyoraUser"));
+        if (currentUser) {
+            navAuthLink.textContent = "Profile";
+            navAuthLink.href = "profile.html";
+        }
+    }
+
+    // 14. Логика страницы авторизации (login.html)
+    const authForm = document.getElementById("authForm");
+    let isSignUp = false;
+    const switchBtn = document.getElementById("switchAuthMode");
+    const nameContainer = document.getElementById("nameFieldContainer");
+    const submitBtn = document.getElementById("authSubmitBtn");
+
+    if (switchBtn && nameContainer && submitBtn) {
+        nameContainer.style.display = "none";
+        switchBtn.addEventListener("click", () => {
+            isSignUp = !isSignUp;
+            nameContainer.style.display = isSignUp ? "block" : "none";
+            submitBtn.textContent = isSignUp ? "Sign Up" : "Log In";
+            switchBtn.textContent = isSignUp ? "Already have an account? Log In" : "Don't have an account? Sign Up";
+        });
+    }
+
+    if (authForm) {
+        authForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            let isValid = true;
+
+            const nameInput = document.getElementById("authName");
+            const emailInput = document.getElementById("authEmail");
+            const passInput = document.getElementById("authPassword");
+            const phoneInput = document.getElementById("authPhone");
+
+            document.querySelectorAll(".invalid-feedback").forEach(el => el.textContent = "");
+            document.querySelectorAll(".form-control").forEach(el => el.classList.remove("is-invalid"));
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                document.getElementById("emailError").textContent = "Please enter a valid email address.";
+                emailInput.classList.add("is-invalid");
+                isValid = false;
+            }
+
+            if (!passInput.value || passInput.value.length < 6) {
+                document.getElementById("passwordError").textContent = "Password must be at least 6 characters long.";
+                passInput.classList.add("is-invalid");
+                isValid = false;
+            }
+
+            if (phoneInput && !phoneInput.value.trim()) {
+                document.getElementById("phoneError").textContent = "Phone number is required.";
+                phoneInput.classList.add("is-invalid");
+                isValid = false;
+            }
+
+            if (isSignUp && nameInput && !nameInput.value.trim()) {
+                document.getElementById("nameError").textContent = "Name is required.";
+                nameInput.classList.add("is-invalid");
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const userData = {
+                name: isSignUp ? nameInput.value : "Flyora Traveler",
+                email: emailInput.value,
+                phone: phoneInput ? phoneInput.value : "+7 (700) 000-00-00"
+            };
+
+            localStorage.setItem("flyoraUser", JSON.stringify(userData));
+            if (window.showToast) window.showToast("Authentication successful! Redirecting...");
+            setTimeout(() => {
+                window.location.href = "profile.html";
+            }, 1000);
+        });
+    }
+
+    // 15. Логика страницы профиля (profile.html)
+    if (window.location.pathname.includes("profile.html")) {
+        const storedUser = JSON.parse(localStorage.getItem("flyoraUser"));
+        if (!storedUser) {
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("profileName").textContent = storedUser.name;
+            document.getElementById("profileEmail").textContent = storedUser.email;
+            document.getElementById("profilePhone").textContent = storedUser.phone;
+            document.getElementById("profileAvatar").textContent = storedUser.name.charAt(0).toUpperCase();
+        }
+
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", () => {
+                localStorage.removeItem("flyoraUser");
+                window.location.href = "index.html";
+            });
+        }
+    }
+
+    // 16. Внешний API (Погода в Астане через Open-Meteo)
+    const apiContainer = document.getElementById("externalApiContainer");
+    if (apiContainer) {
+        apiContainer.innerHTML = `<div class="text-center py-3"><div class="spinner-border spinner-border-sm" role="status"></div> Loading live weather...</div>`;
+
+        fetch("https://api.open-meteo.com/v1/forecast?latitude=51.1694&longitude=71.4491&current_weather=true")
+            .then(res => {
+                if (!res.ok) throw new Error("Weather API error");
+                return res.json();
+            })
+            .then(data => {
+                const weather = data.current_weather;
+                const temp = Math.round(weather.temperature);
+                const wind = weather.windspeed;
+
+                apiContainer.innerHTML = `
+                    <div class="d-flex align-items-center justify-content-between text-start">
+                        <div>
+                            <h6 class="fw-bold mb-1">🌤️ Live Weather in Astana (NQZ)</h6>
+                            <p class="text-muted small mb-0">Wind speed: ${wind} km/h | Flight conditions: Good</p>
+                        </div>
+                        <div class="text-end">
+                            <span class="h4 fw-bold mb-0 d-block">${temp > 0 ? '+' + temp : temp}°C</span>
+                            <span class="badge bg-success rounded-pill">Live API</span>
+                        </div>
+                    </div>
+                `;
+            })
+            .catch(() => {
+                apiContainer.innerHTML = `
+                    <div class="d-flex align-items-center justify-content-between text-start">
+                        <div>
+                            <h6 class="fw-bold mb-1">🌍 Flyora Global Network</h6>
+                            <p class="text-muted small mb-0">Active Hub: Astana (NQZ) | Status: Operational</p>
+                        </div>
+                        <span class="badge bg-primary px-3 py-2 rounded-pill">Online 24/7</span>
+                    </div>
+                `;
+            });
+    }
+
+    // 17. Подсветка текста и Lazy Loading картинок
+    const highlightInput = document.querySelector("#highlightInput");
+    const highlightBtn = document.querySelector("#highlightSearchBtn");
+
+    if (highlightInput && highlightBtn) {
+        highlightBtn.addEventListener("click", function () {
+            const keyword = highlightInput.value.trim();
+            removeHighlights();
+            if (!keyword) return;
+            highlightTextInElement(document.body, keyword);
+        });
+    }
+
+    function highlightTextInElement(element, keyword) {
+        const regex = new RegExp(`(${keyword})`, "gi");
+        $(element).find(":not(script, style, noscript, header, nav)").contents().each(function() {
+            if (this.nodeType === 3) {
+                let text = this.nodeValue;
+                if (regex.test(text)) {
+                    let newHtml = text.replace(regex, '<mark class="search-highlight">$1</mark>');
+                    let $wrapper = $("<span>").html(newHtml);
+                    $(this).replaceWith($wrapper);
+                }
+            }
+        });
+    }
+
+    function removeHighlights() {
+        $("mark.search-highlight").each(function () {
+            let parent = this.parentNode;
+            parent.replaceChild(document.createTextNode(this.textContent), this);
+            parent.normalize();
+        });
+    }
+
+    function checkLazyImages() {
+        const $lazyImages = $("img[data-src]");
+        const windowHeight = $(window).height();
+        const scrollTop = $(window).scrollTop();
+
+        $lazyImages.each(function () {
+            const $img = $(this);
+            if ($img.offset().top < scrollTop + windowHeight + 300) {
+                if (!$img.attr('src')) {
+                    $img.attr('src', $img.attr('data-src'));
+                    $img.hide().fadeIn(600);
+                }
+            }
+        });
+    }
+
+    $(window).on("scroll load", checkLazyImages);
+    checkLazyImages();
 });
 
-// ==========================================
-// 11. JQUERY ФУНКЦИИ (ПРОГРЕСС СКРОЛЛА, СЧЕТЧИКИ, TOAST)
-// ==========================================
+// 18. jQuery эффекты (Прогресс скролла, счетчики, Toast)
 function runJQueryFeatures() {
     if (typeof jQuery === "undefined") {
         setTimeout(runJQueryFeatures, 100);
@@ -286,7 +510,6 @@ function runJQueryFeatures() {
     }
 
     $(document).ready(function () {
-        // Прогресс скролла
         if ($('#scroll-progress').length === 0) {
             $('body').prepend('<div id="scroll-progress" style="position:fixed; top:0; left:0; height:5px; background:linear-gradient(90deg, #3b173d, #d8b47c); width:0%; z-index:9999;"></div>');
         }
@@ -297,7 +520,6 @@ function runJQueryFeatures() {
             $('#scroll-progress').css('width', progress + '%');
         });
 
-        // Анимация счетчиков (с исправленной формулой)
         let counted = false;
         $(window).on('scroll', function () {
             const $statsSection = $('#stats-section');
@@ -319,7 +541,6 @@ function runJQueryFeatures() {
             }
         });
 
-        // Toast уведомления
         window.showToast = function (message) {
             const $toast = $(`
                 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
@@ -335,73 +556,4 @@ function runJQueryFeatures() {
         };
     });
 }
-// ==========================================
-// 12. TASK 3: SEARCH HIGHLIGHTING (ПОДСВЕТКА ПОИСКА)
-// ==========================================
-// Создаем поле поиска для подсветки, если его нет, или ищем существующий input
-const highlightInput = document.querySelector("#highlightInput");
-const highlightBtn = document.querySelector("#highlightSearchBtn");
-
-if (highlightInput && highlightBtn) {
-    highlightBtn.addEventListener("click", function () {
-        const keyword = highlightInput.value.trim();
-
-        // Сначала убираем старую подсветку
-        removeHighlights();
-
-        if (!keyword) return;
-
-        // Ищем совпадения в текстовых узлах и оборачиваем в тег <mark>
-        highlightTextInElement(document.body, keyword);
-    });
-}
-
-function highlightTextInElement(element, keyword) {
-    const regex = new RegExp(`(${keyword})`, "gi");
-
-    // Рекурсивно обходим дочерние элементы страницы (исключая скрипты, стили и саму панель поиска)
-    $(element).find(":not(script, style, noscript, header, nav)").contents().each(function() {
-        if (this.nodeType === 3) { // Текстовый узел
-            let text = this.nodeValue;
-            if (regex.test(text)) {
-                let newHtml = text.replace(regex, '<mark class="search-highlight">$1</mark>');
-                let $wrapper = $("<span>").html(newHtml);
-                $(this).replaceWith($wrapper);
-            }
-        }
-    });
-}
-
-function removeHighlights() {
-    $("mark.search-highlight").each(function () {
-        let parent = this.parentNode;
-        parent.replaceChild(document.createTextNode(this.textContent), this);
-        parent.normalize();
-    });
-}
-
-// ==========================================
-// 13. TASK 9: IMAGE LAZY LOADING
-// ==========================================
-function checkLazyImages() {
-    const $lazyImages = $("img[data-src]");
-    const windowHeight = $(window).height();
-    const scrollTop = $(window).scrollTop();
-
-    $lazyImages.each(function () {
-        const $img = $(this);
-        // Если картинка приближается к области видимости (с запасом в 300px)
-        if ($img.offset().top < scrollTop + windowHeight + 300) {
-            if (!$img.attr('src')) {
-                $img.attr('src', $img.attr('data-src'));
-                $img.hide().fadeIn(600); // Плавное появление при загрузке
-            }
-        }
-    });
-}
-
-// Запускаем при скролле и при загрузке страницы
-$(window).on("scroll load", checkLazyImages);
-// Первичный вызов на случай, если картинки уже в зоне видимости
-checkLazyImages();
 runJQueryFeatures();
