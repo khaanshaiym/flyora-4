@@ -18,28 +18,27 @@
         <h3 class="fw-bold">Welcome Back</h3>
         <p class="text-muted small">Sign up or log in to manage your bookings</p>
     </div>
-
-    <!-- Форма Sign Up / Login -->
+    
     <form id="authForm" novalidate>
         <div class="mb-3" id="nameFieldContainer">
             <label class="form-label small fw-medium">Full Name</label>
             <input type="text" id="authName" class="form-control" placeholder="Enter your name">
-            <div class="invalid-feedback text-danger small" id="nameError"></div>
+            <div class="text-danger small mt-1" id="nameError"></div>
         </div>
         <div class="mb-3">
             <label class="form-label small fw-medium">Email Address</label>
-            <input type="email" id="authEmail" class="form-control" placeholder="name@example.com">
-            <div class="invalid-feedback text-danger small" id="emailError"></div>
+            <input type="text" id="authEmail" class="form-control" placeholder="name@example.com">
+            <div class="text-danger small mt-1" id="emailError"></div>
         </div>
         <div class="mb-3">
             <label class="form-label small fw-medium">Password</label>
             <input type="password" id="authPassword" class="form-control" placeholder="At least 6 characters">
-            <div class="invalid-feedback text-danger small" id="passwordError"></div>
+            <div class="text-danger small mt-1" id="passwordError"></div>
         </div>
         <div class="mb-3">
             <label class="form-label small fw-medium">Phone Number</label>
             <input type="text" id="authPhone" class="form-control" placeholder="+7 (777) 000-00-00">
-            <div class="invalid-feedback text-danger small" id="phoneError"></div>
+            <div class="text-danger small mt-1" id="phoneError"></div>
         </div>
 
         <button type="submit" id="authSubmitBtn" class="btn btn-dark w-100 py-2 rounded-pill fw-semibold mb-2">Log In</button>

@@ -1,11 +1,6 @@
-// ==========================================
-// FLYORA MAIN SCRIPT - ALL-IN-ONE
-// ==========================================
 
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Flyora script initialized successfully!");
-
-    // 1. Клавиатурная навигация по стрелочкам
     document.addEventListener("keydown", function (e) {
         if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
             return;
@@ -28,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 2. Смена кастомного фона
     const changeBgBtn = document.getElementById("changeBgBtn");
     const savedBgColor = localStorage.getItem("customBgColor");
     if (savedBgColor && !document.body.classList.contains("dark-theme")) {
@@ -52,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 3. Светлая и темная тема
+
     const toggleBtns = document.querySelectorAll(".theme-toggle-btn, #theme-toggle");
     const isDarkTheme = localStorage.getItem("theme") === "dark";
 
@@ -81,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 4. Живые часы
+
     const clockEl = document.getElementById("liveClock");
     if (clockEl) {
         setInterval(() => {
@@ -90,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 1000);
     }
 
-    // 5. Аккордеоны
+
     const accButtons = document.querySelectorAll(".accordion-btn");
     accButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -103,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 6. Кнопка Read More
+
     const readMoreBtn = document.getElementById("readMoreBtn");
     const moreGuidanceText = document.getElementById("moreGuidanceText");
     if (readMoreBtn && moreGuidanceText) {
@@ -118,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 7. Рейтинг звездами
+
     const stars = document.querySelectorAll(".rating-star");
     const ratingText = document.getElementById("ratingValueText");
     stars.forEach((star, index) => {
@@ -130,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 8. Модальное окно (Subscribe popup)
+
     const openPopupBtn = document.getElementById("openPopupBtn");
     const closePopupBtn = document.getElementById("closePopupBtn");
     const popupModal = document.getElementById("popupModal");
@@ -138,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (openPopupBtn && popupModal) openPopupBtn.addEventListener("click", () => { popupModal.style.display = "block"; });
     if (closePopupBtn && popupModal) closePopupBtn.addEventListener("click", () => { popupModal.style.display = "none"; });
 
-    // 9. Копирование промокода
+
     const copyBtn = document.querySelector(".copy-btn");
     if (copyBtn) {
         copyBtn.addEventListener("click", function () {
@@ -156,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 10. Форма поиска на главной
+
     const flightSearchForm = document.getElementById("flightSearchForm");
     if (flightSearchForm) {
         flightSearchForm.addEventListener("submit", function (e) {
@@ -180,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 11. Рендеринг и фильтрация рейсов
+
     const flightsData = [
         { id: 1, airline: "Flyora Air", from: "Astana (NQZ)", to: "Almaty (ALA)", price: 32900, type: "direct", duration: "1h 35m" },
         { id: 2, airline: "Air Astana", from: "Almaty (ALA)", to: "Dubai (DXB)", price: 91500, type: "direct", duration: "4h 15m" },
@@ -257,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
         liveSearchInput.addEventListener("keyup", () => renderFlights("all"));
     }
 
-    // 12. Валидация формы контактов (без HTML атрибутов)
+
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
         contactForm.addEventListener("submit", function (e) {
@@ -304,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 13. Автоматическая смена кнопки Login / Profile в шапке
+
     const navAuthLink = document.getElementById("navAuthLink");
     if (navAuthLink) {
         const currentUser = JSON.parse(localStorage.getItem("flyoraUser"));
@@ -314,7 +308,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // 14. Логика страницы авторизации (login.html)
+
     const authForm = document.getElementById("authForm");
     let isSignUp = false;
     const switchBtn = document.getElementById("switchAuthMode");
@@ -385,7 +379,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 15. Логика страницы профиля (profile.html)
+
     if (window.location.pathname.includes("profile.html")) {
         const storedUser = JSON.parse(localStorage.getItem("flyoraUser"));
         if (!storedUser) {
@@ -406,7 +400,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // 16. Внешний API (Погода в Астане через Open-Meteo)
+
     const apiContainer = document.getElementById("externalApiContainer");
     if (apiContainer) {
         apiContainer.innerHTML = `<div class="text-center py-3"><div class="spinner-border spinner-border-sm" role="status"></div> Loading live weather...</div>`;
@@ -447,7 +441,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // 17. Подсветка текста и Lazy Loading картинок
+
     const highlightInput = document.querySelector("#highlightInput");
     const highlightBtn = document.querySelector("#highlightSearchBtn");
 
@@ -502,7 +496,7 @@ document.addEventListener("DOMContentLoaded", function () {
     checkLazyImages();
 });
 
-// 18. jQuery эффекты (Прогресс скролла, счетчики, Toast)
+
 function runJQueryFeatures() {
     if (typeof jQuery === "undefined") {
         setTimeout(runJQueryFeatures, 100);

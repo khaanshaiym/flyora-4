@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
-
 html {
     scroll-behavior: smooth;
 }
@@ -18,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #3b173d;
 }
 
-/* --- ТЕМНАЯ ТЕМА --- */
+
 body.dark-theme {
     background-color: #120b13 !important;
     color: #f8f3f9 !important;
@@ -68,7 +67,7 @@ body.dark-theme #theme-toggle {
     border-color: #4a2d52 !important;
 }
 
-/* Кнопка Explore */
+
 #explore-btn, .btn-explore, .navbar .btn-explore {
     background: linear-gradient(135deg, #3b173d, #d8b47c) !important;
     border: none !important;
@@ -217,26 +216,25 @@ main, main.py-5, .container.py-5 {
     padding-bottom: 2rem !important;
     margin-top: 0 !important;
 }
-/* --- Стили для Toast-уведомлений по умолчанию (Светлая тема) --- */
+
 .toast {
-    background-color: #ffffff !important; /* Белый фон для светлой темы */
-    color: #221a24 !important;           /* Темный читаемый текст */
+    background-color: #ffffff !important;
+    color: #221a24 !important;
     border: 1px solid #e0d0e2 !important;
 }
 
 .toast .btn-close {
-    filter: none; /* Обычный крестик для светлой темы */
+    filter: none;
 }
 
-/* --- Контрастные Toast-уведомления для ТЕМНОЙ темы --- */
 body.dark-theme .toast {
-    background-color: #f8f3f9 !important; /* Светлый фон в темной теме */
-    color: #120b13 !important;           /* Темный текст для контраста */
+    background-color: #f8f3f9 !important;
+    color: #120b13 !important;
     border: 1px solid #3d2942 !important;
 }
 
 body.dark-theme .toast .btn-close {
-    filter: brightness(0) saturate(100%); /* Темный крестик в темной теме */
+    filter: brightness(0) saturate(100%);
 }
 
 mark.search-highlight {
