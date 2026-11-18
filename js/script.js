@@ -1,6 +1,7 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Flyora script initialized successfully!");
+
+
     document.addEventListener("keydown", function (e) {
         if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
             return;
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = navLinks[currentIndex].href;
         }
     });
+
 
     const changeBgBtn = document.getElementById("changeBgBtn");
     const savedBgColor = localStorage.getItem("customBgColor");
